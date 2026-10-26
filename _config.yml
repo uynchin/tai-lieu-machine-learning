@@ -1,0 +1,12 @@
+title: Tài liệu Machine Learning
+author: Trinh
+execute:
+  execute_notebooks: "off"
+repository:
+  url: https://github.com/uynchin/tai-lieu-machine-learning
+  branch: main
+html:
+  use_repository_button: true
+  use_issues_button: true
+launch_buttons:
+  colab_url: "https://colab.research.google.com"

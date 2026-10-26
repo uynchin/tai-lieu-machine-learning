@@ -1,0 +1,6 @@
+format: jb-book
+root: welcome
+parts:
+  - caption: Machine learning
+    chapters:
+      - file: chuong1/bai1
