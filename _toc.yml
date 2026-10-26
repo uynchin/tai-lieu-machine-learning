@@ -3,11 +3,6 @@ root: welcome
 parts:
   - caption: Machine learning
     chapters:
-      - file: chuong1/bai1format: jb-book
-root: welcome
-parts:
-  - caption: Machine learning
-    chapters:
       - file: chuong1/lexicon-based
         sections:
           - file: chuong1/bai1
