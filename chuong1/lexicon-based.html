@@ -1,0 +1,818 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Lexicon Based &#8212; Tài liệu Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chuong1/lexicon-based';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="SentiWordNet" href="bai1.html" />
+    <link rel="prev" title="Chào mừng" href="../welcome.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../welcome.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Tài liệu Machine Learning</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../welcome.html">
+                    Chào mừng
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Lexicon Based</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="bai1.html">SentiWordNet</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/uynchin/tai-lieu-machine-learning" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/uynchin/tai-lieu-machine-learning/issues/new?title=Issue%20on%20page%20%2Fchuong1/lexicon-based.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chuong1/lexicon-based.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Lexicon Based</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tai-nguyen-tu-vung-co-san">Tài nguyên từ vựng có sẵn</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nhom-nay-do-cai-gi">Nhóm này đo cái gì</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quy-trinh-chung-cua-moi-tu-dien">Quy trình chung của mọi từ điển</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-tu-dien-cam-xuc-thuong-dung">Các từ điển cảm xúc thường dùng</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-quy-tac-xu-ly-ngu-canh">Các quy tắc xử lý ngữ cảnh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chuan-hoa-diem-va-chon-nguong">Chuẩn hoá điểm và chọn ngưỡng</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-han-che-can-neu-ro">Các hạn chế cần nêu rõ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#van-de-voi-tieng-viet">Vấn đề với tiếng Việt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-danh-gia-ket-qua">Cách đánh giá kết quả</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-tri-so-voi-cac-phuong-phap-khac">Vị trí so với các phương pháp khác</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ket-luan">Kết luận</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="lexicon-based">
+<h1>Lexicon Based<a class="headerlink" href="#lexicon-based" title="Link to this heading">#</a></h1>
+<section id="tai-nguyen-tu-vung-co-san">
+<h2>Tài nguyên từ vựng có sẵn<a class="headerlink" href="#tai-nguyen-tu-vung-co-san" title="Link to this heading">#</a></h2>
+<section id="nhom-nay-do-cai-gi">
+<h3>Nhóm này đo cái gì<a class="headerlink" href="#nhom-nay-do-cai-gi" title="Link to this heading">#</a></h3>
+<p>Các từ điển cảm xúc không tự phân tích câu. Chúng chỉ cung cấp một bảng tra, trong đó mỗi từ hoặc khái niệm tương ứng với một điểm hoặc một nhãn. Phương pháp phân tích nằm ở cách tra bảng rồi gộp điểm. Vì vậy khi dùng nhóm này, câu hỏi cần giữ là điểm cuối cùng phản ánh cảm xúc của người viết, hay chỉ phản ánh việc văn bản chứa nhiều từ mà từ điển đã gán nhãn.</p>
+</section>
+<section id="quy-trinh-chung-cua-moi-tu-dien">
+<h3>Quy trình chung của mọi từ điển<a class="headerlink" href="#quy-trinh-chung-cua-moi-tu-dien" title="Link to this heading">#</a></h3>
+<p>Câu minh họa: “The room was not very clean, but the staff were wonderful!”</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bước</p></th>
+<th class="head"><p>Hành động</p></th>
+<th class="head"><p>Kết quả trên câu minh họa</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Tách từ, đưa về chữ thường, có thể đưa về dạng gốc</p></td>
+<td><p>the, room, was, not, very, clean, but, the, staff, were, wonderful</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Tra từng từ trong từ điển</p></td>
+<td><p>“clean” và “wonderful” có điểm dương. “not”, “very”, “but” thường không có điểm trong từ điển thuần</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Gộp điểm các từ tìm thấy</p></td>
+<td><p>Có hai từ dương và không có từ âm, nên kết quả là dương</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Chuẩn hoá theo độ dài văn bản, bước này không bắt buộc</p></td>
+<td><p>Chia tổng điểm cho số từ</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Công thức gộp điểm phổ biến nhất:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Điểm</span> <span class="n">của</span> <span class="n">d</span> <span class="o">=</span> <span class="n">tổng</span> <span class="n">của</span> <span class="n">s</span><span class="p">(</span><span class="n">w</span><span class="p">),</span> <span class="n">với</span> <span class="n">mọi</span> <span class="n">từ</span> <span class="n">w</span> <span class="n">trong</span> <span class="n">văn</span> <span class="n">bản</span> <span class="n">d</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ký hiệu</p></th>
+<th class="head"><p>Ý nghĩa</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">d</span></code></p></td>
+<td><p>Văn bản cần chấm, có thể là câu, bình luận hoặc bài báo</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">w</span></code></p></td>
+<td><p>Một từ trong văn bản d</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">s(w)</span></code></p></td>
+<td><p>Điểm của từ w trong từ điển, bằng không nếu từ không có trong từ điển</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Điểm</span> <span class="pre">của</span> <span class="pre">d</span></code></p></td>
+<td><p>Điểm cảm xúc của cả văn bản</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Ở câu minh họa, người đọc hiểu là người viết chê phòng nhưng khen nhân viên. Từ điển thuần chỉ thấy “clean” và “wonderful”, cả hai đều dương. Phủ định trong “not very clean” và chuyển hướng bởi “but” đều bị bỏ qua. Đây là hạn chế chung của cả nhóm, và là lý do VADER bổ sung các quy tắc ngữ cảnh. Taboada và cộng sự năm 2011, đăng trên tạp chí Computational Linguistics, nhấn mạnh rằng chất lượng từ điển cùng cách xử lý phủ định và từ nhấn mạnh quyết định độ chính xác của hướng tiếp cận này.</p>
+</section>
+</section>
+<section id="cac-tu-dien-cam-xuc-thuong-dung">
+<h2>Các từ điển cảm xúc thường dùng<a class="headerlink" href="#cac-tu-dien-cam-xuc-thuong-dung" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Từ điển</p></th>
+<th class="head"><p>Cách gán nhãn</p></th>
+<th class="head"><p>Phù hợp với</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>AFINN, Nielsen 2011</p></td>
+<td><p>Điểm nguyên từ âm năm đến dương năm cho từng từ</p></td>
+<td><p>Văn bản ngắn trên mạng xã hội</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bing Liu, Hu và Liu 2004</p></td>
+<td><p>Hai danh sách từ dương và từ âm, không có mức độ</p></td>
+<td><p>Bình luận về sản phẩm và dịch vụ</p></td>
+</tr>
+<tr class="row-even"><td><p>NRC, Mohammad và Turney 2013</p></td>
+<td><p>Tám cảm xúc cơ bản gồm vui, giận, sợ, buồn, tin tưởng, ghê tởm, ngạc nhiên, mong đợi, cùng hai nhãn dương và âm</p></td>
+<td><p>Bài toán cần phân loại cảm xúc chi tiết hơn hai cực</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="bai1.html"><span class="std std-doc">SentiWordNet</span></a>, Baccianella và cộng sự 2010</p></td>
+<td><p>Điểm dương, âm, trung tính theo từng nghĩa của từ</p></td>
+<td><p>Khi cần phân biệt nghĩa của từ đa nghĩa</p></td>
+</tr>
+<tr class="row-even"><td><p>VADER, Hutto và Gilbert 2014</p></td>
+<td><p>Điểm liên tục từ âm bốn đến dương bốn, kèm quy tắc về ngữ cảnh</p></td>
+<td><p>Văn bản ngắn, không chính thức</p></td>
+</tr>
+<tr class="row-odd"><td><p>Loughran và McDonald 2011</p></td>
+<td><p>Từ điển riêng cho báo cáo tài chính</p></td>
+<td><p>Văn bản kinh tế và tài chính</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Một từ có thể mang nghĩa khác nhau giữa các lĩnh vực. Từ “liability” là trung tính trong đời sống nhưng mang nghĩa tiêu cực trong báo cáo tài chính. Vì vậy từ điển chung chỉ nên dùng cho văn bản chung. Dữ liệu chuyên ngành cần từ điển riêng hoặc phải chỉnh lại từ điển có sẵn.</p>
+</section>
+<section id="cac-quy-tac-xu-ly-ngu-canh">
+<h2>Các quy tắc xử lý ngữ cảnh<a class="headerlink" href="#cac-quy-tac-xu-ly-ngu-canh" title="Link to this heading">#</a></h2>
+<p>Từ điển thuần chỉ cộng điểm từng từ, nên cần thêm các quy tắc sau để giảm sai lệch. VADER là từ điển áp dụng nhiều quy tắc trong số này.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Hiện tượng</p></th>
+<th class="head"><p>Cách xử lý</p></th>
+<th class="head"><p>Ví dụ</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Phủ định</p></td>
+<td><p>Đảo dấu hoặc giảm điểm của từ cảm xúc nằm trong khoảng ba từ sau từ phủ định</p></td>
+<td><p>“không sạch” tính là âm</p></td>
+</tr>
+<tr class="row-odd"><td><p>Từ nhấn mạnh</p></td>
+<td><p>Nhân điểm với hệ số lớn hơn một</p></td>
+<td><p>“rất sạch” có điểm cao hơn “sạch”</p></td>
+</tr>
+<tr class="row-even"><td><p>Từ giảm nhẹ</p></td>
+<td><p>Nhân điểm với hệ số nhỏ hơn một</p></td>
+<td><p>“hơi sạch” có điểm thấp hơn “sạch”</p></td>
+</tr>
+<tr class="row-odd"><td><p>Từ chuyển hướng</p></td>
+<td><p>Tăng trọng số cho mệnh đề đứng sau từ “nhưng”</p></td>
+<td><p>Ý khen nhân viên được ưu tiên hơn ý chê phòng</p></td>
+</tr>
+<tr class="row-even"><td><p>Chữ in hoa</p></td>
+<td><p>Tăng điểm khi từ viết hoa toàn bộ</p></td>
+<td><p>“TUYỆT VỜI” mạnh hơn “tuyệt vời”</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dấu chấm than</p></td>
+<td><p>Tăng nhẹ cường độ</p></td>
+<td><p>“Tốt!!!” mạnh hơn “Tốt”</p></td>
+</tr>
+<tr class="row-even"><td><p>Biểu tượng cảm xúc</p></td>
+<td><p>Tra điểm riêng cho từng biểu tượng</p></td>
+<td><p>Mặt cười cộng điểm, mặt khóc trừ điểm</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Trên câu minh họa, khi áp dụng phủ định và từ nhấn mạnh, cụm “not very clean” được tính là âm. Khi áp dụng thêm quy tắc từ chuyển hướng, mệnh đề “the staff were wonderful” được ưu tiên. Kết quả cuối cùng phản ánh đúng hơn việc người viết chê phòng nhưng khen nhân viên.</p>
+</section>
+<section id="chuan-hoa-diem-va-chon-nguong">
+<h2>Chuẩn hoá điểm và chọn ngưỡng<a class="headerlink" href="#chuan-hoa-diem-va-chon-nguong" title="Link to this heading">#</a></h2>
+<p>Tổng điểm thô phụ thuộc vào độ dài văn bản. Một bình luận dài dễ có điểm cao hơn chỉ vì chứa nhiều từ. Có hai cách chuẩn hoá phổ biến.</p>
+<p>Cách thứ nhất là chia tổng điểm cho số từ của văn bản:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Điểm</span> <span class="n">chuẩn</span> <span class="n">hoá</span> <span class="n">của</span> <span class="n">d</span> <span class="o">=</span> <span class="n">Điểm</span> <span class="n">của</span> <span class="n">d</span> <span class="o">/</span> <span class="n">số</span> <span class="n">từ</span> <span class="n">của</span> <span class="n">d</span>
+</pre></div>
+</div>
+<p>Cách thứ hai là đưa điểm về khoảng từ âm một đến dương một. VADER dùng công thức sau:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Điểm tổng hợp = x / √(x² + 15)
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ký hiệu</p></th>
+<th class="head"><p>Ý nghĩa</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
+<td><p>Tổng điểm thô của văn bản</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">15</span></code></p></td>
+<td><p>Hằng số do nhóm tác giả chọn</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Điểm</span> <span class="pre">tổng</span> <span class="pre">hợp</span></code></p></td>
+<td><p>Điểm đã đưa về khoảng từ âm một đến dương một</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Sau khi có điểm tổng hợp, ta chia nhãn bằng ngưỡng. Với VADER, ngưỡng thường dùng là dương không phẩy không năm và âm không phẩy không năm. Điểm từ không phẩy không năm trở lên là dương, điểm từ âm không phẩy không năm trở xuống là âm, phần còn lại là trung tính. Ngưỡng này nên được kiểm tra lại trên một tập nhãn thủ công của chính dữ liệu đang nghiên cứu.</p>
+</section>
+<section id="cac-han-che-can-neu-ro">
+<h2>Các hạn chế cần nêu rõ<a class="headerlink" href="#cac-han-che-can-neu-ro" title="Link to this heading">#</a></h2>
+<p>Ngoài phủ định và chuyển hướng, phương pháp từ điển còn các hạn chế sau.</p>
+<p>Thứ nhất là mỉa mai và châm biếm. Câu “Dịch vụ tuyệt vời, chờ có bốn mươi phút thôi” chứa từ dương nhưng ý chê. Từ điển không nhận ra điều này.</p>
+<p>Thứ hai là từ đa nghĩa và sắc thái theo lĩnh vực. Từ “nhỏ” là khen khi nói về chi phí, nhưng là chê khi nói về diện tích phòng.</p>
+<p>Thứ ba là từ ngoài từ điển. Từ mới, tiếng lóng và từ viết tắt không có điểm nên bị bỏ qua.</p>
+<p>Thứ tư là độ phủ, tức tỷ lệ từ trong văn bản thực sự tra được trong từ điển. Độ phủ thấp nghĩa là điểm cuối cùng chỉ dựa trên một phần nhỏ của văn bản, nên kết quả kém tin cậy. Nên báo cáo độ phủ cùng với kết quả phân loại.</p>
+<p>Thứ năm là văn bản không có từ cảm xúc nhưng vẫn mang cảm xúc, như câu “Mình sẽ không quay lại nữa”. Câu này không chứa từ nào có điểm rõ ràng, trong khi ý chê thể hiện qua cấu trúc.</p>
+</section>
+<section id="van-de-voi-tieng-viet">
+<h2>Vấn đề với tiếng Việt<a class="headerlink" href="#van-de-voi-tieng-viet" title="Link to this heading">#</a></h2>
+<p>Tiếng Việt có nhiều từ ghép, nên phải tách từ trước khi tra bảng. Nếu không, “tuyệt vời” bị cắt thành hai từ riêng và mất điểm. Các công cụ tách từ thường dùng là VnCoreNLP, underthesea và PyVi.</p>
+<p>Nguồn từ điển cảm xúc tiếng Việt có sẵn còn ít và chất lượng không đồng đều. Có ba hướng xử lý. Hướng thứ nhất là dịch một từ điển tiếng Anh như NRC sang tiếng Việt rồi kiểm tra lại thủ công. Hướng thứ hai là xây từ điển riêng theo lĩnh vực nghiên cứu, chẳng hạn từ điển cho bình luận khách sạn. Hướng thứ ba là kết hợp cả hai và bổ sung từ lóng mạng xã hội.</p>
+<p>Văn bản mạng xã hội tiếng Việt còn có viết tắt, viết không dấu, kéo dài chữ và sai chính tả, như “ko”, “k”, “đc”, “tuyệt vờiiii”. Vì vậy cần chuẩn hoá chính tả trước khi tra bảng, nếu không nhiều từ cảm xúc sẽ không được nhận ra. Các từ phủ định tiếng Việt như “không”, “chưa”, “chẳng”, “đâu có” cũng cần được đưa vào danh sách quy tắc phủ định.</p>
+</section>
+<section id="cach-danh-gia-ket-qua">
+<h2>Cách đánh giá kết quả<a class="headerlink" href="#cach-danh-gia-ket-qua" title="Link to this heading">#</a></h2>
+<p>Để biết điểm từ điển có phản ánh cảm xúc thật hay không, ta so kết quả của từ điển với một tập nhãn do người gán. Quy trình gồm bốn bước.</p>
+<ol class="arabic simple">
+<li><p>Lấy mẫu ngẫu nhiên vài trăm văn bản từ dữ liệu.</p></li>
+<li><p>Để hai người gán nhãn độc lập, rồi tính hệ số đồng thuận giữa hai người, thường dùng hệ số Cohen kappa.</p></li>
+<li><p>Chạy từ điển trên cùng tập mẫu.</p></li>
+<li><p>So sánh hai bộ nhãn bằng các chỉ số trong bảng dưới.</p></li>
+</ol>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Chỉ số</p></th>
+<th class="head"><p>Ý nghĩa</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Độ chính xác tổng thể</p></td>
+<td><p>Tỷ lệ văn bản được gán đúng nhãn trên tổng số văn bản</p></td>
+</tr>
+<tr class="row-odd"><td><p>Độ chính xác theo lớp</p></td>
+<td><p>Trong các văn bản được gán nhãn dương, bao nhiêu phần thực sự dương</p></td>
+</tr>
+<tr class="row-even"><td><p>Độ thu hồi</p></td>
+<td><p>Trong các văn bản thực sự dương, bao nhiêu phần được gán đúng nhãn dương</p></td>
+</tr>
+<tr class="row-odd"><td><p>Điểm F1</p></td>
+<td><p>Trung bình điều hoà của độ chính xác theo lớp và độ thu hồi</p></td>
+</tr>
+<tr class="row-even"><td><p>Ma trận nhầm lẫn</p></td>
+<td><p>Bảng cho thấy nhãn nào hay bị nhầm sang nhãn nào</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Ma trận nhầm lẫn thường cho thấy từ điển nhầm nhiều nhất ở lớp trung tính và ở các câu có phủ định hoặc mỉa mai. Phần này nên được phân tích riêng trong bài.</p>
+</section>
+<section id="vi-tri-so-voi-cac-phuong-phap-khac">
+<h2>Vị trí so với các phương pháp khác<a class="headerlink" href="#vi-tri-so-voi-cac-phuong-phap-khac" title="Link to this heading">#</a></h2>
+<p>Nên chọn từ điển khi dữ liệu chưa có nhãn, cần kết quả nhanh, cần giải thích được vì sao một văn bản bị chấm dương hay âm, hoặc cần một đường cơ sở để so sánh.</p>
+<p>Không nên chỉ dùng từ điển khi dữ liệu có nhiều ngữ cảnh phức tạp, nhiều mỉa mai, hoặc khi cần độ chính xác cao. Lúc đó học máy có giám sát hoặc mô hình ngôn ngữ đã huấn luyện trước thường cho kết quả tốt hơn.</p>
+<p>Trong thực tế nghiên cứu, từ điển thường được dùng làm đường cơ sở. Kết quả của các mô hình phức tạp hơn được so với đường cơ sở này để cho thấy mô hình mới cải thiện được bao nhiêu.</p>
+</section>
+<section id="ket-luan">
+<h2>Kết luận<a class="headerlink" href="#ket-luan" title="Link to this heading">#</a></h2>
+<p>Điểm cuối cùng của từ điển phản ánh cảm xúc của người viết đến mức nào còn phụ thuộc vào bốn điều kiện. Thứ nhất, từ điển phải phù hợp với lĩnh vực dữ liệu. Thứ hai, các quy tắc ngữ cảnh phải được áp dụng. Thứ ba, độ phủ phải đủ cao. Thứ tư, kết quả phải được kiểm tra với nhãn của người. Nếu thiếu một trong bốn điều kiện này, điểm cuối cùng nhiều khả năng chỉ cho biết văn bản chứa bao nhiêu từ mà từ điển đã gán nhãn.</p>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chuong1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../welcome.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chào mừng</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="bai1.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">SentiWordNet</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tai-nguyen-tu-vung-co-san">Tài nguyên từ vựng có sẵn</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nhom-nay-do-cai-gi">Nhóm này đo cái gì</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#quy-trinh-chung-cua-moi-tu-dien">Quy trình chung của mọi từ điển</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-tu-dien-cam-xuc-thuong-dung">Các từ điển cảm xúc thường dùng</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-quy-tac-xu-ly-ngu-canh">Các quy tắc xử lý ngữ cảnh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#chuan-hoa-diem-va-chon-nguong">Chuẩn hoá điểm và chọn ngưỡng</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-han-che-can-neu-ro">Các hạn chế cần nêu rõ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#van-de-voi-tieng-viet">Vấn đề với tiếng Việt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-danh-gia-ket-qua">Cách đánh giá kết quả</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-tri-so-voi-cac-phuong-phap-khac">Vị trí so với các phương pháp khác</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ket-luan">Kết luận</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Trinh
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
