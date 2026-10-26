@@ -7,3 +7,4 @@ parts:
         sections:
           - file: chuong1/bai1
           - file: chuong1/nrc-emolex
+          - file: chuong1/senticnet
