@@ -38,7 +38,7 @@ Công thức gộp điểm phổ biến nhất:
 |---|---|---|
 | AFINN, Nielsen 2011 | Điểm nguyên từ âm năm đến dương năm cho từng từ | Văn bản ngắn trên mạng xã hội |
 | Bing Liu, Hu và Liu 2004 | Hai danh sách từ dương và từ âm, không có mức độ | Bình luận về sản phẩm và dịch vụ |
-| NRC, Mohammad và Turney 2013 | Tám cảm xúc cơ bản gồm vui, giận, sợ, buồn, tin tưởng, ghê tởm, ngạc nhiên, mong đợi, cùng hai nhãn dương và âm | Bài toán cần phân loại cảm xúc chi tiết hơn hai cực |
+| [NRC](nrc-emolex.md), Mohammad và Turney 2013 | Tám cảm xúc cơ bản gồm vui, giận, sợ, buồn, tin tưởng, ghê tởm, ngạc nhiên, mong đợi, cùng hai nhãn dương và âm | Bài toán cần phân loại cảm xúc chi tiết hơn hai cực |
 | [SentiWordNet](bai1.md), Baccianella và cộng sự 2010 | Điểm dương, âm, trung tính theo từng nghĩa của từ | Khi cần phân biệt nghĩa của từ đa nghĩa |
 | VADER, Hutto và Gilbert 2014 | Điểm liên tục từ âm bốn đến dương bốn, kèm quy tắc về ngữ cảnh | Văn bản ngắn, không chính thức |
 | Loughran và McDonald 2011 | Từ điển riêng cho báo cáo tài chính | Văn bản kinh tế và tài chính |
