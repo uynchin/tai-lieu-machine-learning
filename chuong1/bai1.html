@@ -1,0 +1,845 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>SentiWordNet &#8212; Tài liệu Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chuong1/bai1';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Chào mừng" href="../welcome.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../welcome.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Tài liệu Machine Learning</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../welcome.html">
+                    Chào mừng
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">SentiWordNet</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/uynchin/tai-lieu-machine-learning" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/uynchin/tai-lieu-machine-learning/issues/new?title=Issue%20on%20page%20%2Fchuong1/bai1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chuong1/bai1.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>SentiWordNet</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sentiwordnet-la-gi">1. SentiWordNet là gì?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nen-tang-wordnet-va-synset">Nền tảng: WordNet và synset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sentiwordnet-gan-them-gi-vao-wordnet">SentiWordNet gắn thêm gì vào WordNet</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-cac-tac-gia-xay-dung-no">Cách các tác giả xây dựng nó</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-dung-khi-phan-tich-mot-cau">Cách dùng khi phân tích một câu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diem-manh">Điểm mạnh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diem-yeu">Điểm yếu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bai-tu-2026-dung-sentiwordnet">Bài từ 2026 dùng SentiWordNet</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sentiwordnet-trong-bai-chay-theo-chuoi-nay">SentiWordNet trong bài chạy theo chuỗi này</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-sao-bai-chon-sentiwordnet">Vì sao bài chọn SentiWordNet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-sao-chon-cach-dung-tu-dien">Vì sao chọn cách dùng từ điển</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-sao-chon-sentiwordnet-ma-khong-chon-tu-dien-khac">Vì sao chọn SentiWordNet mà không chọn từ điển khác</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sentiwordnet">
+<h1>SentiWordNet<a class="headerlink" href="#sentiwordnet" title="Link to this heading">#</a></h1>
+<section id="sentiwordnet-la-gi">
+<h2>1. SentiWordNet là gì?<a class="headerlink" href="#sentiwordnet-la-gi" title="Link to this heading">#</a></h2>
+<p>SentiWordNet là một từ điển cảm xúc. Nó cho biết mỗi nghĩa của một từ tiếng Anh mang bao nhiêu phần tích cực, bao nhiêu phần tiêu cực và bao nhiêu phần trung tính. Người ta dùng nó để máy tính tự đánh giá một câu, một bài review là khen hay chê mà không cần ai đọc và chấm tay.</p>
+</section>
+<section id="nen-tang-wordnet-va-synset">
+<h2>Nền tảng: WordNet và synset<a class="headerlink" href="#nen-tang-wordnet-va-synset" title="Link to this heading">#</a></h2>
+<p>WordNet là một từ điển tiếng Anh khác với từ điển thường. Nó không xếp theo chữ cái mà gom các từ có cùng nghĩa vào một nhóm gọi là synset (synonym set, nhóm từ đồng nghĩa). Mỗi synset đại diện cho một nghĩa cụ thể, có kèm một câu định nghĩa ngắn gọi là gloss.</p>
+<p>Ví dụ, từ “cold” có nhiều nghĩa nên thuộc nhiều synset khác nhau: một synset là “lạnh về nhiệt độ”, một synset khác là “lạnh lùng, thiếu thân thiện”. Hai nghĩa này mang sắc thái cảm xúc rất khác nhau, và đây là lý do SentiWordNet gán điểm cho synset chứ không gán cho từ.</p>
+</section>
+<section id="sentiwordnet-gan-them-gi-vao-wordnet">
+<h2>SentiWordNet gắn thêm gì vào WordNet<a class="headerlink" href="#sentiwordnet-gan-them-gi-vao-wordnet" title="Link to this heading">#</a></h2>
+<p>Với mỗi synset s, SentiWordNet gắn ba điểm có tổng bằng 1:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Pos</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">+</span> <span class="n">Neg</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">+</span> <span class="n">Obj</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ký hiệu</p></th>
+<th class="head"><p>Ý nghĩa</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">s</span></code></p></td>
+<td><p>Một synset, tức một nghĩa cụ thể của từ</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Pos(s)</span></code></p></td>
+<td><p>Mức tích cực của nghĩa đó, từ 0 đến 1</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Neg(s)</span></code></p></td>
+<td><p>Mức tiêu cực của nghĩa đó, từ 0 đến 1</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Obj(s)</span></code></p></td>
+<td><p>Mức khách quan, tức không mang ý kiến, bằng 1 trừ Pos trừ Neg</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Vì tổng luôn bằng 1 nên chỉ cần biết Pos và Neg là suy ra được Obj.</p>
+<p>Ví dụ minh họa (các con số dưới đây tôi tự đặt để bạn dễ hình dung, không phải số thật trong SentiWordNet):</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Synset</p></th>
+<th class="head"><p>Pos</p></th>
+<th class="head"><p>Neg</p></th>
+<th class="head"><p>Obj</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>cold, nghĩa lạnh về nhiệt độ</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+<td><p>1.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>cold, nghĩa lạnh lùng</p></td>
+<td><p>0.0</p></td>
+<td><p>0.75</p></td>
+<td><p>0.25</p></td>
+</tr>
+<tr class="row-even"><td><p>excellent</p></td>
+<td><p>0.875</p></td>
+<td><p>0.0</p></td>
+<td><p>0.125</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Hai nghĩa của “cold” có điểm khác hẳn nhau. Nghĩa nhiệt độ hoàn toàn khách quan, còn nghĩa lạnh lùng thì nghiêng về tiêu cực.</p>
+</section>
+<section id="cach-cac-tac-gia-xay-dung-no">
+<h2>Cách các tác giả xây dựng nó<a class="headerlink" href="#cach-cac-tac-gia-xay-dung-no" title="Link to this heading">#</a></h2>
+<p>Quá trình đi theo các bước sau:</p>
+<ol class="arabic simple">
+<li><p>Lấy một tập nhỏ synset đã được gán nhãn tay là dương hoặc âm, ví dụ các synset của “good”, “nice” cho dương và “bad”, “ugly” cho âm.</p></li>
+<li><p>Mở rộng tập này qua các quan hệ có sẵn trong WordNet. Ý tưởng là synset gần với synset dương thì nhiều khả năng cũng dương, nên tập nhãn lớn dần lên.</p></li>
+<li><p>Dùng tập đã mở rộng làm dữ liệu huấn luyện cho nhiều bộ phân loại. Các bộ này đọc phần gloss của synset và học xem những gloss kiểu nào thì dương, kiểu nào thì âm.</p></li>
+<li><p>Cho các bộ phân loại chấm toàn bộ synset còn lại, rồi từ kết quả tính ra Pos, Neg, Obj.</p></li>
+</ol>
+<p>Bản 3.0 gộp kết quả của nhiều bộ phân loại, rồi thêm một bước random walk trên đồ thị gloss của WordNet để tinh chỉnh điểm. Random walk ở đây hiểu đơn giản là cho điểm cảm xúc lan truyền qua các synset có gloss nhắc đến nhau, để các synset liên quan có điểm nhất quán hơn.</p>
+<p>Điểm cần nhớ là điểm do thuật toán tự gán, không phải người chấm.</p>
+</section>
+<section id="cach-dung-khi-phan-tich-mot-cau">
+<h2>Cách dùng khi phân tích một câu<a class="headerlink" href="#cach-dung-khi-phan-tich-mot-cau" title="Link to this heading">#</a></h2>
+<p>Lấy câu “The room was clean but the staff were rude” làm ví dụ. Các điểm dưới đây cũng là số minh họa.</p>
+<ol class="arabic simple">
+<li><p>Tách từ: The, room, was, clean, but, the, staff, were, rude.</p></li>
+<li><p>Gán từ loại (POS tag): clean là tính từ, rude là tính từ, room và staff là danh từ. Bước này cần vì cùng một từ khác loại thì khác synset.</p></li>
+<li><p>Lemmatize, tức đưa về dạng gốc: was và were về be.</p></li>
+<li><p>Chọn nghĩa đúng trong ngữ cảnh (word sense disambiguation). Đây là bước khó nhất, nên nhiều người lấy nghĩa đầu tiên cho đơn giản.</p></li>
+<li><p>Tra Pos, Neg, Obj của synset đã chọn cho từng từ, như bảng dưới.</p></li>
+</ol>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Từ</p></th>
+<th class="head"><p>Pos</p></th>
+<th class="head"><p>Neg</p></th>
+<th class="head"><p>Obj</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>clean</p></td>
+<td><p>0.5</p></td>
+<td><p>0.0</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>rude</p></td>
+<td><p>0.0</p></td>
+<td><p>0.625</p></td>
+<td><p>0.375</p></td>
+</tr>
+<tr class="row-even"><td><p>room, staff</p></td>
+<td><p>0.0</p></td>
+<td><p>0.0</p></td>
+<td><p>1.0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Gộp lại, ví dụ lấy tổng Pos trừ tổng Neg: 0.5 trừ 0.625 bằng âm 0.125. Câu hơi nghiêng về tiêu cực. Cách gộp này do người dùng tự chọn, có thể dùng trung bình hay cách khác tùy mục đích.</p>
+</section>
+<section id="diem-manh">
+<h2>Điểm mạnh<a class="headerlink" href="#diem-manh" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Điểm gắn với nghĩa chứ không gắn với từ, nên các nghĩa khác nhau của cùng một từ có thể có điểm khác nhau (Esuli &amp; Sebastiani, 2006).</p></li>
+<li><p>Có thang liên tục và có điểm khách quan để phân biệt từ trung tính với từ mang ý kiến (Esuli &amp; Sebastiani, 2006).</p></li>
+<li><p>Bản 3.0 báo cáo độ chính xác tốt hơn bản 1.0 (Baccianella và cộng sự, 2010).</p></li>
+</ul>
+</section>
+<section id="diem-yeu">
+<h2>Điểm yếu<a class="headerlink" href="#diem-yeu" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Điểm do thuật toán gán tự động chứ không do người chấm, nên có nhiễu (Baccianella và cộng sự, 2010 nêu rõ cách gán tự động).</p></li>
+<li><p>Muốn dùng đúng phải làm word sense disambiguation, và lỗi ở bước này kéo theo sai điểm. Ý này không đến từ bài báo mà là nhận xét về cách dùng.</p></li>
+<li><p>Hutto &amp; Gilbert (2014) nhận xét SentiWordNet thiếu các đặc trưng của mạng xã hội như từ lóng và biểu tượng cảm xúc. Ý này cần đối chiếu với bài gốc trước khi trích.</p></li>
+</ul>
+</section>
+<section id="bai-tu-2026-dung-sentiwordnet">
+<h2>Bài từ 2026 dùng SentiWordNet<a class="headerlink" href="#bai-tu-2026-dung-sentiwordnet" title="Link to this heading">#</a></h2>
+<p>Chen, Y., Chen, S., Wu, Z., Yu, S., &amp; Du, Z. (2026). Attribute Correlation and Hotel Recommendation Based on Online Reviews. <em>Mathematics, 14</em>(14), 2482. <a class="reference external" href="https://doi.org/10.3390/math14142482">https://doi.org/10.3390/math14142482</a></p>
+<p>File bài báo trên Drive: <a class="reference external" href="https://drive.google.com/file/d/19-ZPalRwZQPt_y7ag6uYDD5ILyHDYyLh/view?usp=sharing">mathematics-14-02482-v2.pdf (Q1)</a></p>
+</section>
+<section id="sentiwordnet-trong-bai-chay-theo-chuoi-nay">
+<h2>SentiWordNet trong bài chạy theo chuỗi này<a class="headerlink" href="#sentiwordnet-trong-bai-chay-theo-chuoi-nay" title="Link to this heading">#</a></h2>
+<p>Từ review đến điểm ban đầu của từng từ:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Review của khách
+=&gt; tiền xử lý (viết thường, sửa lỗi chính tả, bỏ stop word)
+=&gt; chỉ giữ danh từ, động từ, trạng từ, tính từ
+=&gt; tra PosScore và NegScore trong SentiWordNet cho từng từ
+=&gt; nếu một từ có nhiều synset thì lấy trung bình cộng điểm của các synset đó
+   (bài không làm word sense disambiguation)
+=&gt; ra điểm ban đầu e+ và e− của từ
+=&gt; từ không có trong từ điển thì cả hai điểm bằng 0
+</pre></div>
+</div>
+<p>Từ điểm ban đầu đến điểm sau lan truyền:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Điểm ban đầu e+ và e−
+=&gt; dựng đồ thị, mỗi nút là một từ, cạnh nối theo quan hệ cú pháp,
+   trọng số cạnh là độ tương đồng
+=&gt; chạy PolarityRank cho điểm lan truyền giữa các nút
+=&gt; lặp tối đa 200 lần hoặc đến khi chênh lệch giữa hai lần lặp
+   không quá 10 mũ âm 5
+=&gt; ra PR+ và PR− của từng từ
+=&gt; bài chỉ giữ PR+ làm điểm cảm xúc
+</pre></div>
+</div>
+<p>Công thức lan truyền (PR− viết tương tự, thay e+ bằng e−):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>PR+(vi) = (1 − d) × e+_i + d × Σ_j [ w_ij / Σ_k |w_jk| ] × PR+(vj)
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ký hiệu</p></th>
+<th class="head"><p>Ý nghĩa</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">vi</span></code></p></td>
+<td><p>Từ đang được tính điểm</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PR+(vi)</span></code></p></td>
+<td><p>Điểm tích cực sau lan truyền của vi</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">e+_i</span></code></p></td>
+<td><p>Điểm tích cực ban đầu của vi từ SentiWordNet</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">d</span></code></p></td>
+<td><p>Hệ số lặp, bài đặt 0.85</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">(1</span> <span class="pre">−</span> <span class="pre">d)</span></code></p></td>
+<td><p>Phần điểm giữ lại từ chính từ đó</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">vj</span></code></p></td>
+<td><p>Từ lân cận của vi trên đồ thị</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">w_ij</span></code></p></td>
+<td><p>Trọng số cạnh giữa vi và vj</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">w_jk</span></code></p></td>
+<td><p>Trọng số các cạnh đi ra từ vj, dùng để chia đều điểm của vj</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PR+(vj)</span></code></p></td>
+<td><p>Điểm tích cực hiện tại của vj</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Từ điểm của từng từ đến điểm của từng thuộc tính:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Điểm</span> <span class="n">PR</span><span class="o">+</span> <span class="n">của</span> <span class="n">từng</span> <span class="n">từ</span>
+<span class="o">=&gt;</span> <span class="n">Word2Vec</span> <span class="n">đã</span> <span class="n">gom</span> <span class="n">từ</span> <span class="n">liên</span> <span class="n">quan</span> <span class="n">vào</span> <span class="mi">6</span> <span class="n">thuộc</span> <span class="n">tính</span>
+<span class="o">=&gt;</span> <span class="n">tính</span> <span class="n">trung</span> <span class="n">bình</span> <span class="n">có</span> <span class="n">trọng</span> <span class="n">số</span> <span class="n">theo</span> <span class="n">độ</span> <span class="n">tương</span> <span class="n">đồng</span>
+<span class="o">=&gt;</span> <span class="n">ra</span> <span class="n">điểm</span> <span class="n">cảm</span> <span class="n">xúc</span> <span class="n">của</span> <span class="n">từng</span> <span class="n">thuộc</span> <span class="n">tính</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>total_senti = Σ (simi × senti) / Σ simi
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ký hiệu</p></th>
+<th class="head"><p>Ý nghĩa</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">total_senti</span></code></p></td>
+<td><p>Điểm cảm xúc của một thuộc tính</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">simi</span></code></p></td>
+<td><p>Độ tương đồng giữa từ liên quan và tên thuộc tính</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">senti</span></code></p></td>
+<td><p>Điểm PR+ của từ liên quan</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Điểm cảm xúc của thuộc tính đi vào hai nơi.</p>
+<p>Nơi 1, hồi quy OLS:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chuẩn</span> <span class="n">hóa</span> <span class="n">điểm</span> <span class="n">theo</span> <span class="n">từng</span> <span class="n">khách</span> <span class="n">sạn</span>
+<span class="o">=&gt;</span> <span class="n">thuộc</span> <span class="n">tính</span> <span class="n">lõi</span> <span class="n">là</span> <span class="n">biến</span> <span class="n">độc</span> <span class="n">lập</span><span class="p">,</span> <span class="n">các</span> <span class="n">thuộc</span> <span class="n">tính</span> <span class="n">còn</span> <span class="n">lại</span> <span class="n">là</span> <span class="n">biến</span> <span class="n">phụ</span> <span class="n">thuộc</span>
+<span class="o">=&gt;</span> <span class="n">kiểm</span> <span class="n">tra</span> <span class="n">hiệu</span> <span class="n">ứng</span> <span class="n">hào</span> <span class="n">quang</span>
+</pre></div>
+</div>
+<p>Nơi 2, mô hình khuyến nghị (mục 5.1.1):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>điểm lớn hơn 0.5 là tích cực, nhỏ hơn −0.5 là tiêu cực,
+ở giữa là trung lập, không nhắc đến là thiếu dữ liệu
+=&gt; đổi thành số fuzzy
+=&gt; tính trọng số
+=&gt; lọc cộng tác
+</pre></div>
+</div>
+</section>
+<section id="vi-sao-bai-chon-sentiwordnet">
+<h2>Vì sao bài chọn SentiWordNet<a class="headerlink" href="#vi-sao-bai-chon-sentiwordnet" title="Link to this heading">#</a></h2>
+<p>SentiWordNet chỉ là một từ điển. Vì vậy câu hỏi “vì sao chọn nó” thật ra gồm hai câu hỏi: vì sao chọn từ điển thay vì mô hình học máy, và trong các từ điển thì vì sao chọn SentiWordNet.</p>
+<section id="vi-sao-chon-cach-dung-tu-dien">
+<h3>Vì sao chọn cách dùng từ điển<a class="headerlink" href="#vi-sao-chon-cach-dung-tu-dien" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Bài</span> <span class="n">nói</span> <span class="n">rõ</span> <span class="n">ở</span> <span class="n">mục</span> <span class="mf">3.4</span>
+<span class="o">=&gt;</span> <span class="n">chọn</span> <span class="n">cách</span> <span class="n">không</span> <span class="n">giám</span> <span class="n">sát</span> <span class="n">dựa</span> <span class="n">trên</span> <span class="n">từ</span> <span class="n">điển</span> <span class="n">vì</span> <span class="n">hiệu</span> <span class="n">quả</span> <span class="n">và</span> <span class="n">đã</span> <span class="n">chín</span> <span class="n">muồi</span>
+<span class="o">=&gt;</span> <span class="n">dữ</span> <span class="n">liệu</span> <span class="n">có</span> <span class="mf">885.490</span> <span class="n">review</span>
+<span class="o">=&gt;</span> <span class="n">không</span> <span class="n">có</span> <span class="n">nhãn</span> <span class="n">cảm</span> <span class="n">xúc</span> <span class="n">sẵn</span>
+<span class="o">=&gt;</span> <span class="n">muốn</span> <span class="n">dùng</span> <span class="n">học</span> <span class="n">máy</span> <span class="n">có</span> <span class="n">giám</span> <span class="n">sát</span> <span class="n">thì</span> <span class="n">phải</span> <span class="n">gán</span> <span class="n">nhãn</span> <span class="n">tay</span> <span class="n">một</span> <span class="n">lượng</span> <span class="n">lớn</span>
+<span class="o">=&gt;</span> <span class="n">từ</span> <span class="n">điển</span> <span class="n">bỏ</span> <span class="n">qua</span> <span class="n">được</span> <span class="n">khâu</span> <span class="n">này</span>
+</pre></div>
+</div>
+<p>Lý do thực tế đi kèm:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">từ</span> <span class="n">điển</span> <span class="n">chạy</span> <span class="n">nhanh</span> <span class="n">trên</span> <span class="n">dữ</span> <span class="n">liệu</span> <span class="n">lớn</span>
+<span class="o">=&gt;</span> <span class="n">điểm</span> <span class="n">số</span> <span class="n">của</span> <span class="n">từng</span> <span class="n">từ</span> <span class="n">nhìn</span> <span class="n">thấy</span> <span class="n">và</span> <span class="n">giải</span> <span class="n">thích</span> <span class="n">được</span>
+<span class="o">=&gt;</span> <span class="n">cần</span> <span class="n">điểm</span> <span class="n">liên</span> <span class="n">tục</span> <span class="n">theo</span> <span class="n">từng</span> <span class="n">thuộc</span> <span class="n">tính</span> <span class="n">để</span> <span class="n">chạy</span> <span class="n">hồi</span> <span class="n">quy</span><span class="p">,</span>
+   <span class="n">không</span> <span class="n">chỉ</span> <span class="n">nhãn</span> <span class="n">khen</span> <span class="n">hoặc</span> <span class="n">chê</span>
+</pre></div>
+</div>
+</section>
+<section id="vi-sao-chon-sentiwordnet-ma-khong-chon-tu-dien-khac">
+<h3>Vì sao chọn SentiWordNet mà không chọn từ điển khác<a class="headerlink" href="#vi-sao-chon-sentiwordnet-ma-khong-chon-tu-dien-khac" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Nó có điểm liên tục chứ không chỉ nhãn dương hoặc âm, nên hợp với bài vì cần biến số để đưa vào hồi quy OLS.</p></li>
+<li><p>Nó có sẵn trong NLTK, gắn với WordNet, nên dễ dùng, tra theo từ loại, không cần xây từ đầu.</p></li>
+<li><p>Nó có điểm riêng cho từng từ loại, nên khớp với việc bài chủ động chỉ giữ danh từ, động từ, trạng từ, tính từ.</p></li>
+<li><p>Nó phủ rộng, vì WordNet có hàng trăm nghìn synset, nên từ vựng review ít bị bỏ sót hơn so với từ điển nhỏ.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chuong1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../welcome.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Chào mừng</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sentiwordnet-la-gi">1. SentiWordNet là gì?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nen-tang-wordnet-va-synset">Nền tảng: WordNet và synset</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sentiwordnet-gan-them-gi-vao-wordnet">SentiWordNet gắn thêm gì vào WordNet</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-cac-tac-gia-xay-dung-no">Cách các tác giả xây dựng nó</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-dung-khi-phan-tich-mot-cau">Cách dùng khi phân tích một câu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diem-manh">Điểm mạnh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diem-yeu">Điểm yếu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bai-tu-2026-dung-sentiwordnet">Bài từ 2026 dùng SentiWordNet</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sentiwordnet-trong-bai-chay-theo-chuoi-nay">SentiWordNet trong bài chạy theo chuỗi này</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-sao-bai-chon-sentiwordnet">Vì sao bài chọn SentiWordNet</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-sao-chon-cach-dung-tu-dien">Vì sao chọn cách dùng từ điển</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-sao-chon-sentiwordnet-ma-khong-chon-tu-dien-khac">Vì sao chọn SentiWordNet mà không chọn từ điển khác</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Trinh
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
