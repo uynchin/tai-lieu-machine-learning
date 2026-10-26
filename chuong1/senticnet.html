@@ -1,0 +1,737 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>SenticNet &#8212; Tài liệu Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chuong1/senticnet';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="NRC Emotion Lexicon" href="nrc-emolex.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../welcome.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Tài liệu Machine Learning</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../welcome.html">
+                    Chào mừng
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="lexicon-based.html">Lexicon Based</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="bai1.html">SentiWordNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nrc-emolex.html">NRC Emotion Lexicon</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">SenticNet</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/uynchin/tai-lieu-machine-learning" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/uynchin/tai-lieu-machine-learning/issues/new?title=Issue%20on%20page%20%2Fchuong1/senticnet.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chuong1/senticnet.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>SenticNet</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#senticnet-la-gi">1. SenticNet là gì?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nen-tang-khai-niem-va-tri-thuc-thuong-thuc">Nền tảng: khái niệm và tri thức thường thức</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#senticnet-gan-them-gi-vao-khai-niem">SenticNet gắn thêm gì vào khái niệm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-minh-hoa">Ví dụ minh họa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-cac-tac-gia-xay-dung-no">Cách các tác giả xây dựng nó</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-phien-ban-chinh">Các phiên bản chính</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-dung-khi-phan-tich-mot-cau">Cách dùng khi phân tích một câu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diem-manh">Điểm mạnh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diem-yeu">Điểm yếu</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="senticnet">
+<h1>SenticNet<a class="headerlink" href="#senticnet" title="Link to this heading">#</a></h1>
+<section id="senticnet-la-gi">
+<h2>1. SenticNet là gì?<a class="headerlink" href="#senticnet-la-gi" title="Link to this heading">#</a></h2>
+<p>SenticNet là một từ điển cảm xúc dựa trên khái niệm. Nó gán cho mỗi khái niệm một điểm cực tính từ âm một đến dương một, kèm các nhãn cảm xúc và danh sách khái niệm liên quan. Người ta dùng nó để máy tính đánh giá một câu hay một bài review là khen hay chê, kể cả khi cảm xúc không nằm ở một từ đơn mà nằm ở cả cụm.</p>
+<p>Điểm khác với hai từ điển trước nằm ở đơn vị tra cứu. <a class="reference internal" href="bai1.html"><span class="std std-doc">SentiWordNet</span></a> gán điểm cho nghĩa của từ. <a class="reference internal" href="nrc-emolex.html"><span class="std std-doc">EmoLex</span></a> gán nhãn cho từ. SenticNet gán điểm cho khái niệm, thường gồm nhiều từ ghép lại, ví dụ “accomplish goal” hay “make good impression”. Tác giả chính là Erik Cambria cùng các cộng sự, và hướng nghiên cứu này được gọi là sentic computing.</p>
+</section>
+<section id="nen-tang-khai-niem-va-tri-thuc-thuong-thuc">
+<h2>Nền tảng: khái niệm và tri thức thường thức<a class="headerlink" href="#nen-tang-khai-niem-va-tri-thuc-thuong-thuc" title="Link to this heading">#</a></h2>
+<p>Một khái niệm trong SenticNet là một từ hoặc một cụm từ biểu đạt một ý trọn vẹn. Lý do chọn khái niệm thay cho từ đơn là nhiều cụm mang cảm xúc mà từng từ trong cụm lại trung tính. Ví dụ “go to the dentist” không có từ nào rõ ràng tiêu cực, nhưng nhiều người liên tưởng đến cảm giác khó chịu. Ngược lại “small room” và “small price” có cùng từ “small” nhưng sắc thái hoàn toàn khác nhau.</p>
+<p>SenticNet dựa vào tri thức thường thức, tức những điều mà người bình thường mặc nhiên biết về thế giới, ví dụ ăn đồ hỏng thì đau bụng. Nguồn tri thức này đến từ ConceptNet và WordNet Affect. Nhờ vậy khái niệm không có trong danh sách vẫn có thể được suy ra điểm từ các khái niệm có quan hệ gần.</p>
+</section>
+<section id="senticnet-gan-them-gi-vao-khai-niem">
+<h2>SenticNet gắn thêm gì vào khái niệm<a class="headerlink" href="#senticnet-gan-them-gi-vao-khai-niem" title="Link to this heading">#</a></h2>
+<p>Với mỗi khái niệm c, SenticNet gắn các thông tin sau:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Thành phần</p></th>
+<th class="head"><p>Ý nghĩa</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Cực tính</p></td>
+<td><p>Nhãn tích cực hoặc tiêu cực</p></td>
+</tr>
+<tr class="row-odd"><td><p>Giá trị cực tính</p></td>
+<td><p>Một số từ âm một đến dương một, càng gần hai đầu thì càng mạnh</p></td>
+</tr>
+<tr class="row-even"><td><p>Nhãn tâm trạng</p></td>
+<td><p>Một số nhãn cảm xúc cụ thể gắn với khái niệm</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bốn chiều cảm xúc</p></td>
+<td><p>Các điểm trên bốn trục của mô hình đồng hồ cát cảm xúc</p></td>
+</tr>
+<tr class="row-even"><td><p>Khái niệm liên quan</p></td>
+<td><p>Danh sách khái niệm ngữ nghĩa gần với khái niệm đang xét</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Mô hình đồng hồ cát cảm xúc do Cambria và cộng sự đề xuất, phát triển từ bánh xe của Plutchik. Mô hình chia cảm xúc thành bốn trục độc lập, mỗi trục có mức mạnh khác nhau. Tên bốn trục khác nhau giữa các phiên bản, nên bạn cần xem đúng phiên bản mình dùng trước khi mô tả.</p>
+<p>Có ba điểm khác với SentiWordNet và EmoLex. Thứ nhất, điểm cực tính là một số liên tục, nên phân biệt được mức mạnh yếu, điều mà EmoLex không làm được. Thứ hai, đơn vị là khái niệm đa từ, nên phần nào xử lý được ngữ cảnh cục bộ. Thứ ba, mỗi khái niệm có kèm danh sách khái niệm liên quan, nên có thể dùng để giải thích vì sao khái niệm đó mang cực tính ấy.</p>
+</section>
+<section id="vi-du-minh-hoa">
+<h2>Ví dụ minh họa<a class="headerlink" href="#vi-du-minh-hoa" title="Link to this heading">#</a></h2>
+<p>Các số liệu trong bảng là số tự đặt để minh họa.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Khái niệm</p></th>
+<th class="head"><p>Cực tính</p></th>
+<th class="head"><p>Giá trị cực tính</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>make good impression</p></td>
+<td><p>tích cực</p></td>
+<td><p>0.8</p></td>
+</tr>
+<tr class="row-odd"><td><p>go to the dentist</p></td>
+<td><p>tiêu cực</p></td>
+<td><p>âm 0.4</p></td>
+</tr>
+<tr class="row-even"><td><p>wait in long queue</p></td>
+<td><p>tiêu cực</p></td>
+<td><p>âm 0.6</p></td>
+</tr>
+<tr class="row-odd"><td><p>book a room</p></td>
+<td><p>tích cực</p></td>
+<td><p>0.1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Ví dụ cho thấy hai điều. Cụm như “wait in long queue” mang cực tính tiêu cực dù từng từ riêng lẻ không rõ ràng như vậy. Cụm như “book a room” gần trung tính, nên giá trị chỉ lệch rất nhẹ về một phía.</p>
+</section>
+<section id="cach-cac-tac-gia-xay-dung-no">
+<h2>Cách các tác giả xây dựng nó<a class="headerlink" href="#cach-cac-tac-gia-xay-dung-no" title="Link to this heading">#</a></h2>
+<p>Từ điển có nhiều phiên bản, và cách xây dựng thay đổi qua từng phiên bản. Dưới đây là mô tả chung nhất:</p>
+<ol class="arabic simple">
+<li><p>Thu thập tri thức thường thức dạng khái niệm và quan hệ giữa các khái niệm từ ConceptNet, kết hợp với danh sách cảm xúc của WordNet Affect.</p></li>
+<li><p>Biểu diễn các khái niệm trong một không gian nhiều chiều, trong đó khái niệm gần nghĩa nằm gần nhau. Bản đầu dùng phép giảm chiều dựa trên phân rã ma trận để tạo không gian này, gọi là AffectiveSpace.</p></li>
+<li><p>Từ một tập khái niệm đã biết cực tính, suy ra cực tính của các khái niệm lân cận trong không gian.</p></li>
+<li><p>Các bản sau thay dần phần suy luận này bằng mô hình học sâu và khái niệm nguyên thủy. Khái niệm nguyên thủy là những khái niệm cơ bản mà nhiều khái niệm phức tạp khác có thể gom về. Bản 5 dùng mô hình học ngữ cảnh để khám phá các khái niệm này. Bản 6 và 7 kết hợp phần ký hiệu với phần học sâu, với mục tiêu giải thích được kết quả.</p></li>
+</ol>
+<p>Số khái niệm tăng dần qua các bản, từ vài nghìn ở bản đầu lên hàng trăm nghìn ở các bản gần đây.</p>
+<p>Điểm cần nhớ là cực tính do thuật toán suy ra từ tri thức thường thức và mô hình, không phải do người gán trực tiếp từng khái niệm. Điểm này giống SentiWordNet và khác EmoLex.</p>
+</section>
+<section id="cac-phien-ban-chinh">
+<h2>Các phiên bản chính<a class="headerlink" href="#cac-phien-ban-chinh" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Phiên bản</p></th>
+<th class="head"><p>Năm, nơi công bố</p></th>
+<th class="head"><p>Quy mô và thay đổi chính</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>SenticNet 1</p></td>
+<td><p>2010, AAAI Fall Symposium</p></td>
+<td><p>Khoảng 5.700 khái niệm</p></td>
+</tr>
+<tr class="row-odd"><td><p>SenticNet 2</p></td>
+<td><p>2012, FLAIRS</p></td>
+<td><p>Khoảng 14.000 khái niệm, thêm thông tin ngữ nghĩa và cảm xúc</p></td>
+</tr>
+<tr class="row-even"><td><p>SenticNet 3</p></td>
+<td><p>2014, AAAI</p></td>
+<td><p>Khoảng 30.000 khái niệm, kết hợp tri thức thường thức và tri thức phổ biến</p></td>
+</tr>
+<tr class="row-odd"><td><p>SenticNet 4</p></td>
+<td><p>2016, COLING</p></td>
+<td><p>Khoảng 50.000 khái niệm, dùng khái niệm nguyên thủy</p></td>
+</tr>
+<tr class="row-even"><td><p>SenticNet 5</p></td>
+<td><p>2018, AAAI</p></td>
+<td><p>Khoảng 100.000 khái niệm, khám phá khái niệm nguyên thủy bằng mô hình ngữ cảnh</p></td>
+</tr>
+<tr class="row-odd"><td><p>SenticNet 6</p></td>
+<td><p>2020, CIKM</p></td>
+<td><p>Khoảng 200.000 khái niệm, kết hợp phương pháp ký hiệu và học sâu</p></td>
+</tr>
+<tr class="row-even"><td><p>SenticNet 7</p></td>
+<td><p>2022, LREC</p></td>
+<td><p>Khoảng 300.000 khái niệm, hướng đến khả năng giải thích</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Các con số về quy mô tôi nhớ lại gần đúng, bạn cần kiểm lại trong từng bài gốc trước khi trích.</p>
+</section>
+<section id="cach-dung-khi-phan-tich-mot-cau">
+<h2>Cách dùng khi phân tích một câu<a class="headerlink" href="#cach-dung-khi-phan-tich-mot-cau" title="Link to this heading">#</a></h2>
+<p>Lấy câu “The room was clean but the staff were rude” làm ví dụ. Các điểm dưới đây là số minh họa.</p>
+<ol class="arabic simple">
+<li><p>Tách từ và gán từ loại cho từng từ.</p></li>
+<li><p>Đưa các từ về dạng gốc.</p></li>
+<li><p>Trích các khái niệm từ câu. Khác với hai từ điển trước, bước này không chỉ lấy từ đơn mà còn tìm các cụm có thể khớp với khái niệm trong danh sách, dựa vào quan hệ cú pháp giữa các từ. Trong ví dụ này có thể trích được “clean room” và “rude staff”.</p></li>
+<li><p>Tra giá trị cực tính của từng khái niệm tìm được, như bảng dưới.</p></li>
+<li><p>Gộp lại, ví dụ lấy trung bình hai giá trị. Kết quả là âm 0.05, tức câu gần như trung hòa. Cách gộp do người dùng tự chọn, có thể dùng tổng, trung bình hoặc trọng số theo vị trí.</p></li>
+<li><p>Nếu không tìm thấy khái niệm khớp, người dùng thường quay về tra từng từ đơn.</p></li>
+</ol>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Khái niệm</p></th>
+<th class="head"><p>Giá trị cực tính</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>clean room</p></td>
+<td><p>0.7</p></td>
+</tr>
+<tr class="row-odd"><td><p>rude staff</p></td>
+<td><p>âm 0.8</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="diem-manh">
+<h2>Điểm mạnh<a class="headerlink" href="#diem-manh" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Đơn vị là khái niệm nên xử lý được nhiều trường hợp mà từ đơn không làm được, như cụm cố định hay cụm mang nghĩa bóng. Đây là động lực chính khi tác giả đề xuất hướng tiếp cận này (Cambria và cộng sự, 2010).</p></li>
+<li><p>Có điểm cực tính liên tục, nên biết được mức mạnh yếu. Đây là điểm hơn EmoLex.</p></li>
+<li><p>Có kèm khái niệm liên quan, nên giải thích được vì sao một khái niệm được gán cực tính đó. Hướng giải thích được là trọng tâm của các bản gần đây (Cambria và cộng sự, 2022).</p></li>
+<li><p>Kết hợp được với luật cú pháp. Poria và cộng sự (2014) đề xuất các mẫu dựa trên phụ thuộc cú pháp để xử lý phủ định và các cấu trúc phức tạp trên nền SenticNet.</p></li>
+<li><p>Được dùng làm nguồn tri thức ngoài cho mô hình học sâu. Ma, Peng và Cambria (2018) đưa tri thức thường thức từ SenticNet vào mô hình học sâu cho phân tích cảm xúc theo khía cạnh.</p></li>
+<li><p>Có thư viện Python và giao diện lập trình ứng dụng, nên dùng được ngay.</p></li>
+</ul>
+</section>
+<section id="diem-yeu">
+<h2>Điểm yếu<a class="headerlink" href="#diem-yeu" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Cực tính do thuật toán suy ra nên có nhiễu, và có khái niệm được gán điểm chưa hợp lý. Ý này là nhận xét về cách xây dựng, bạn nên đối chiếu với các bài đánh giá độc lập trước khi nêu.</p></li>
+<li><p>Độ phủ phụ thuộc vào việc trích khái niệm từ câu. Nếu bước trích khái niệm bỏ sót, câu không có điểm.</p></li>
+<li><p>Tập khái niệm chủ yếu là tiếng Anh. Với tiếng Việt, bạn phải dịch dữ liệu sang tiếng Anh trước hoặc dùng bản dịch, và cả hai cách đều có thể làm sai lệch sắc thái.</p></li>
+<li><p>Các phiên bản khác nhau về quy mô, cấu trúc và nhãn đi kèm. Nếu không ghi rõ phiên bản, người khác khó lặp lại kết quả của bạn.</p></li>
+<li><p>Điểm gán cho khái niệm chung chứ không riêng cho lĩnh vực nào. Một khái niệm có thể mang sắc thái khác trong đánh giá khách sạn và trong tin tức. Ý này là nhận xét về cách dùng.</p></li>
+<li><p>Hutto và Gilbert (2014) nhận xét các từ điển loại này thiếu đặc trưng của mạng xã hội như từ lóng và biểu tượng cảm xúc. Bạn nên đối chiếu với bài gốc xem họ có nhắc riêng SenticNet hay không trước khi trích.</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chuong1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="nrc-emolex.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">NRC Emotion Lexicon</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#senticnet-la-gi">1. SenticNet là gì?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nen-tang-khai-niem-va-tri-thuc-thuong-thuc">Nền tảng: khái niệm và tri thức thường thức</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#senticnet-gan-them-gi-vao-khai-niem">SenticNet gắn thêm gì vào khái niệm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-minh-hoa">Ví dụ minh họa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-cac-tac-gia-xay-dung-no">Cách các tác giả xây dựng nó</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-phien-ban-chinh">Các phiên bản chính</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-dung-khi-phan-tich-mot-cau">Cách dùng khi phân tích một câu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diem-manh">Điểm mạnh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diem-yeu">Điểm yếu</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Trinh
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
