@@ -6,3 +6,4 @@ parts:
       - file: chuong1/lexicon-based
         sections:
           - file: chuong1/bai1
+          - file: chuong1/nrc-emolex
