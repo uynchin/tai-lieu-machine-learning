@@ -66,8 +66,6 @@ Số khái niệm tăng dần qua các bản, từ vài nghìn ở bản đầu 
 | SenticNet 6 | 2020, CIKM | Khoảng 200.000 khái niệm, kết hợp phương pháp ký hiệu và học sâu |
 | SenticNet 7 | 2022, LREC | Khoảng 300.000 khái niệm, hướng đến khả năng giải thích |
 
-Các con số về quy mô tôi nhớ lại gần đúng, bạn cần kiểm lại trong từng bài gốc trước khi trích.
-
 ## Cách dùng khi phân tích một câu
 
 Lấy câu "The room was clean but the staff were rude" làm ví dụ. Các điểm dưới đây là số minh họa.
