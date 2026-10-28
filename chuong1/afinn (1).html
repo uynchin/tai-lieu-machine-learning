@@ -1,0 +1,778 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>AFINN &#8212; Tài liệu Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chuong1/afinn (1)';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../welcome.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Tài liệu Machine Learning</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../welcome.html">
+                    Chào mừng
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="lexicon-based.html">Lexicon Based</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="bai1.html">SentiWordNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nrc-emolex.html">NRC Emotion Lexicon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="senticnet.html">SenticNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mpqa.html">MPQA Subjectivity Lexicon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="so-sanh-tu-dien.html">So sánh sáu từ điển cảm xúc: EmoLex, SentiWordNet, SenticNet, AFINN, LIWC và MPQA</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/uynchin/tai-lieu-machine-learning" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/uynchin/tai-lieu-machine-learning/issues/new?title=Issue%20on%20page%20%2Fchuong1/afinn (1).html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chuong1/afinn (1).md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>AFINN</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#afinn-la-gi">1. AFINN là gì?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nen-tang-anew-va-van-ban-mang-xa-hoi">Nền tảng: ANEW và văn bản mạng xã hội</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#afinn-gan-them-gi-vao-tu">AFINN gắn thêm gì vào từ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-minh-hoa">Ví dụ minh họa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-tac-gia-xay-dung-no">Cách tác giả xây dựng nó</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-phien-ban-chinh">Các phiên bản chính</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-dung-khi-phan-tich-mot-cau">Cách dùng khi phân tích một câu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diem-manh">Điểm mạnh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diem-yeu">Điểm yếu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-bai-bao-nen-doc-va-dung-de-trich-dan">Các bài báo nên đọc và dùng để trích dẫn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#luu-y-khi-trich-dan">Lưu ý khi trích dẫn</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="afinn">
+<h1>AFINN<a class="headerlink" href="#afinn" title="Link to this heading">#</a></h1>
+<section id="afinn-la-gi">
+<h2>1. AFINN là gì?<a class="headerlink" href="#afinn-la-gi" title="Link to this heading">#</a></h2>
+<p>AFINN là một từ điển cảm xúc dạng danh sách đơn giản. Mỗi từ tiếng Anh được gán một số nguyên từ âm 5 đến dương 5. Số âm là tiêu cực, số dương là tích cực, và số càng xa 0 thì cảm xúc càng mạnh. Người ta dùng nó để máy tính cộng điểm các từ trong một câu hay một bài review và biết văn bản nghiêng về khen hay chê, mà không cần ai đọc và chấm tay.</p>
+<p>So với ba từ điển trước, AFINN là loại gọn nhất. <a class="reference internal" href="bai1.html"><span class="std std-doc">SentiWordNet</span></a> gán điểm cho nghĩa của từ, <a class="reference internal" href="nrc-emolex.html"><span class="std std-doc">EmoLex</span></a> gán nhãn cảm xúc cho từ, <a class="reference internal" href="senticnet.html"><span class="std std-doc">SenticNet</span></a> gán điểm cho khái niệm. AFINN chỉ gán một con số cho từ, không có nhãn cảm xúc cụ thể, không có nghĩa, không có khái niệm. Tác giả là Finn Årup Nielsen, và tên AFINN lấy từ tên ông.</p>
+</section>
+<section id="nen-tang-anew-va-van-ban-mang-xa-hoi">
+<h2>Nền tảng: ANEW và văn bản mạng xã hội<a class="headerlink" href="#nen-tang-anew-va-van-ban-mang-xa-hoi" title="Link to this heading">#</a></h2>
+<p>Nielsen đặt tên bài báo gốc là “A new ANEW”, nên cần hiểu ANEW trước. ANEW là danh sách các từ tiếng Anh do Bradley và Lang xây dựng, trong đó người tham gia chấm mức dễ chịu, mức kích thích và mức kiểm soát của từng từ trên thang từ 1 đến 9. ANEW có hạn chế là chỉ khoảng hơn một nghìn từ và không chứa nhiều từ thông dụng trên mạng xã hội.</p>
+<p>Nielsen muốn có một danh sách dùng được cho các bài đăng ngắn trên mạng xã hội, nên ông tự soạn danh sách riêng và chọn thang cực tính thay cho ba chiều của ANEW. Vì vậy AFINN mang nhiều từ đời thường và cả từ thô tục, vốn thường thấy trong bình luận trực tuyến.</p>
+</section>
+<section id="afinn-gan-them-gi-vao-tu">
+<h2>AFINN gắn thêm gì vào từ<a class="headerlink" href="#afinn-gan-them-gi-vao-tu" title="Link to this heading">#</a></h2>
+<p>Với mỗi từ w, AFINN gắn một điểm duy nhất:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="n">là</span> <span class="n">một</span> <span class="n">số</span> <span class="n">nguyên</span> <span class="n">từ</span> <span class="n">âm</span> <span class="mi">5</span> <span class="n">đến</span> <span class="n">dương</span> <span class="mi">5</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ký hiệu</p></th>
+<th class="head"><p>Ý nghĩa</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">w</span></code></p></td>
+<td><p>Một từ trong danh sách</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">A(w)</span></code></p></td>
+<td><p>Điểm cảm xúc của từ w, là số nguyên từ âm 5 đến dương 5</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Thành phần</p></th>
+<th class="head"><p>Ý nghĩa</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Dấu của điểm</p></td>
+<td><p>Dương là tích cực, âm là tiêu cực</p></td>
+</tr>
+<tr class="row-odd"><td><p>Độ lớn của điểm</p></td>
+<td><p>Từ 1 là nhẹ đến 5 là rất mạnh</p></td>
+</tr>
+<tr class="row-even"><td><p>Từ không có trong danh sách</p></td>
+<td><p>Coi như không mang cảm xúc</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Có ba điểm khác với các từ điển trước. Thứ nhất, điểm gắn với từ, không có bước chọn nghĩa, giống EmoLex. Thứ hai, điểm là số nguyên chứ không phải số thực, nên chỉ có tối đa mười một mức. Thứ ba, chỉ có một con số cho mỗi từ, nên không biết từ đó gợi cảm xúc cụ thể nào, ví dụ giận dữ hay buồn bã.</p>
+</section>
+<section id="vi-du-minh-hoa">
+<h2>Ví dụ minh họa<a class="headerlink" href="#vi-du-minh-hoa" title="Link to this heading">#</a></h2>
+<p>Điểm của từ abandon là âm 2 theo tệp gốc, cần đối chiếu lại với tệp trước khi trích. Các dòng còn lại chỉ để minh họa, không phải giá trị thật trong tệp.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Từ</p></th>
+<th class="head"><p>Điểm</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>abandon</p></td>
+<td><p>âm 2</p></td>
+</tr>
+<tr class="row-odd"><td><p>excellent</p></td>
+<td><p>dương 3</p></td>
+</tr>
+<tr class="row-even"><td><p>terrible</p></td>
+<td><p>âm 3</p></td>
+</tr>
+<tr class="row-odd"><td><p>superb</p></td>
+<td><p>dương 5</p></td>
+</tr>
+<tr class="row-even"><td><p>room</p></td>
+<td><p>không có trong danh sách</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Ví dụ cho thấy hai điều. Các từ mạnh hơn nhận số lớn hơn, nên “superb” cao hơn “excellent”. Từ chỉ sự vật thông thường như “room” không có trong danh sách và được tính là 0.</p>
+</section>
+<section id="cach-tac-gia-xay-dung-no">
+<h2>Cách tác giả xây dựng nó<a class="headerlink" href="#cach-tac-gia-xay-dung-no" title="Link to this heading">#</a></h2>
+<p>Nielsen công bố nhiều phiên bản, và mô tả chung nhất như sau:</p>
+<ol class="arabic simple">
+<li><p>Thu thập từ từ nhiều nguồn. Theo bài gốc, nguồn gồm các bài đăng trên mạng xã hội Twitter về hội nghị khí hậu năm 2009 ở Copenhagen, một danh sách từ thô tục lấy từ một từ điển trực tuyến, và một số từ lấy từ ANEW.</p></li>
+<li><p>Chính tác giả đọc từng từ và gán điểm nguyên trên thang từ âm 5 đến dương 5. Không dùng thuật toán và không thuê đám đông gán nhãn.</p></li>
+<li><p>Phiên bản sau bổ sung thêm từ và sửa các điểm cũ. Bản đầu có khoảng 1.468 mục, bản 111 có khoảng 2.477 mục, bản 165 có khoảng 3.382 mục.</p></li>
+<li><p>Để kiểm tra, Nielsen so sánh kết quả của AFINN với các danh sách có sẵn khác trên một tập bài đăng đã được người đọc chấm điểm.</p></li>
+</ol>
+<p>Điểm cần nhớ là điểm do một người gán thủ công. Đây là điểm khác với SentiWordNet và SenticNet, vốn do thuật toán suy ra, và cũng khác với EmoLex, vốn do nhiều người gán. Một người gán thì nhất quán nhưng mang thiên lệch cá nhân.</p>
+</section>
+<section id="cac-phien-ban-chinh">
+<h2>Các phiên bản chính<a class="headerlink" href="#cac-phien-ban-chinh" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Phiên bản</p></th>
+<th class="head"><p>Quy mô gần đúng</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>AFINN 96</p></td>
+<td><p>Khoảng 1.468 mục</p></td>
+</tr>
+<tr class="row-odd"><td><p>AFINN 111</p></td>
+<td><p>Khoảng 2.477 mục</p></td>
+</tr>
+<tr class="row-even"><td><p>AFINN 165</p></td>
+<td><p>Khoảng 3.382 mục</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Các con số này là gần đúng, cần đối chiếu với tệp dữ liệu và trang của tác giả. Ngoài ra còn có một tệp nhỏ riêng cho biểu tượng cảm xúc.</p>
+</section>
+<section id="cach-dung-khi-phan-tich-mot-cau">
+<h2>Cách dùng khi phân tích một câu<a class="headerlink" href="#cach-dung-khi-phan-tich-mot-cau" title="Link to this heading">#</a></h2>
+<p>Lấy câu “The room was clean but the staff were rude” làm ví dụ. Các điểm dưới đây chỉ để minh họa.</p>
+<ol class="arabic simple">
+<li><p>Tách từ: The, room, was, clean, but, the, staff, were, rude.</p></li>
+<li><p>Chuyển về chữ thường. AFINN gồm nhiều dạng chia của từ, nên bước đưa về dạng gốc ít quan trọng hơn so với EmoLex.</p></li>
+<li><p>Tra điểm của từng từ, như bảng dưới.</p></li>
+<li><p>Cộng các điểm lại. Trong ví dụ này tổng bằng 0, tức câu trung hòa.</p></li>
+</ol>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Từ</p></th>
+<th class="head"><p>Điểm</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>clean</p></td>
+<td><p>dương 2</p></td>
+</tr>
+<tr class="row-odd"><td><p>rude</p></td>
+<td><p>âm 2</p></td>
+</tr>
+<tr class="row-even"><td><p>các từ còn lại</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Công thức tính điểm của cả văn bản:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Điểm</span> <span class="n">của</span> <span class="n">d</span> <span class="o">=</span> <span class="n">tổng</span> <span class="n">của</span> <span class="n">A</span><span class="p">(</span><span class="n">w</span><span class="p">),</span> <span class="n">với</span> <span class="n">mọi</span> <span class="n">từ</span> <span class="n">w</span> <span class="n">trong</span> <span class="n">d</span>
+</pre></div>
+</div>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Ký hiệu</p></th>
+<th class="head"><p>Ý nghĩa</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">d</span></code></p></td>
+<td><p>Văn bản cần chấm</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">w</span></code></p></td>
+<td><p>Một từ trong văn bản d</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">A(w)</span></code></p></td>
+<td><p>Điểm của từ w trong AFINN, bằng 0 nếu từ không có trong danh sách</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Điểm</span> <span class="pre">của</span> <span class="pre">d</span></code></p></td>
+<td><p>Điểm cảm xúc của cả văn bản</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Vì văn bản dài thường có tổng lớn hơn, nhiều người chia tổng cho số từ để so sánh công bằng giữa các đánh giá dài ngắn khác nhau. Cách tính tổng, trung bình hay chuẩn hóa theo cách khác do người dùng tự chọn và cần nêu rõ trong phần phương pháp. Nielsen cũng ghi nhận rằng danh sách không xử lý phủ định, nên “not good” vẫn bị tính là tích cực nếu không thêm bước riêng.</p>
+</section>
+<section id="diem-manh">
+<h2>Điểm mạnh<a class="headerlink" href="#diem-manh" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Rất đơn giản và minh bạch. Mỗi từ chỉ có một con số, nên kiểm tra và giải thích kết quả dễ dàng. Đây là lý do chính khiến các nghiên cứu sau thường dùng làm mốc so sánh.</p></li>
+<li><p>Có thang cường độ, nên phân biệt được từ nhẹ và từ mạnh. Đây là điểm hơn EmoLex vốn chỉ có nhãn nhị phân (Nielsen, 2011).</p></li>
+<li><p>Được thiết kế cho văn bản ngắn trên mạng xã hội, gồm cả từ đời thường và từ thô tục (Nielsen, 2011).</p></li>
+<li><p>Không cần chọn nghĩa của từ, nên quy trình xử lý nhẹ hơn SentiWordNet.</p></li>
+<li><p>Được dùng làm mốc so sánh trong các bài đánh giá. Hutto và Gilbert (2014) đưa AFINN vào nhóm các phương pháp đối chứng khi giới thiệu VADER.</p></li>
+<li><p>Có sẵn trong nhiều gói phần mềm, gồm gói Python tên afinn và hàm get_sentiments của gói tidytext trong R, nên dùng nhanh và dễ lặp lại kết quả.</p></li>
+</ul>
+</section>
+<section id="diem-yeu">
+<h2>Điểm yếu<a class="headerlink" href="#diem-yeu" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Danh sách nhỏ, chỉ khoảng vài nghìn mục, nên nhiều từ trong văn bản thực tế không được tính. Nên đếm tỷ lệ từ được phủ trên chính dữ liệu đang dùng rồi báo cáo.</p></li>
+<li><p>Điểm do một người gán, nên có thể mang thiên lệch cá nhân và không có thước đo mức đồng thuận như EmoLex. Ý này là nhận xét về cách xây dựng.</p></li>
+<li><p>Không xét ngữ cảnh. Phủ định, mỉa mai và nghĩa khác nhau của cùng một từ đều bị bỏ qua. Nielsen (2011) cũng nêu hạn chế liên quan đến phủ định.</p></li>
+<li><p>Chỉ có một chiều cực tính, nên không cho biết cảm xúc cụ thể như giận dữ hay buồn bã.</p></li>
+<li><p>Chủ yếu là tiếng Anh. Với dữ liệu tiếng Việt, cần dịch trước hoặc dùng bản dịch, và cả hai cách đều có thể làm lệch sắc thái. Ý này là nhận xét về cách dùng.</p></li>
+<li><p>Danh sách được xây dựng từ bình luận về một chủ đề nhất định và từ nguồn mạng xã hội, nên có thể không hợp với lĩnh vực khác như đánh giá khách sạn. Ý này là nhận xét về cách dùng, cần cân nhắc khi nêu trong phần bàn luận.</p></li>
+</ul>
+</section>
+<section id="cac-bai-bao-nen-doc-va-dung-de-trich-dan">
+<h2>Các bài báo nên đọc và dùng để trích dẫn<a class="headerlink" href="#cac-bai-bao-nen-doc-va-dung-de-trich-dan" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bài</p></th>
+<th class="head"><p>Dùng để trích khi nào</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Nielsen (2011), A new ANEW: Evaluation of a word list for sentiment analysis in microblogs, ESWC Workshop on Making Sense of Microposts</p></td>
+<td><p>Mô tả công cụ, cách xây dựng, so sánh với các danh sách khác. Đây là nguồn chính</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bradley &amp; Lang (1999), Affective Norms for English Words, báo cáo kỹ thuật của trung tâm nghiên cứu cảm xúc và chú ý</p></td>
+<td><p>Cơ sở của danh sách ANEW mà Nielsen dựa vào</p></td>
+</tr>
+<tr class="row-even"><td><p>Hutto &amp; Gilbert (2014), VADER: A Parsimonious Rule-based Model for Sentiment Analysis of Social Media Text, ICWSM</p></td>
+<td><p>Ví dụ AFINN được dùng làm mốc so sánh</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="luu-y-khi-trich-dan">
+<h2>Lưu ý khi trích dẫn<a class="headerlink" href="#luu-y-khi-trich-dan" title="Link to this heading">#</a></h2>
+<p>Thông tin xuất bản, số lượng mục và nguồn dữ liệu trong trang này chưa được tra lại trực tiếp. Điểm của từ abandon cũng cần đối chiếu với tệp dữ liệu tải về. Trước khi đưa vào danh mục tài liệu tham khảo, cần kiểm tra tên bài, năm, tập, số trang trên Google Scholar hoặc trang của Finn Årup Nielsen.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chuong1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#afinn-la-gi">1. AFINN là gì?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nen-tang-anew-va-van-ban-mang-xa-hoi">Nền tảng: ANEW và văn bản mạng xã hội</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#afinn-gan-them-gi-vao-tu">AFINN gắn thêm gì vào từ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-minh-hoa">Ví dụ minh họa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-tac-gia-xay-dung-no">Cách tác giả xây dựng nó</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-phien-ban-chinh">Các phiên bản chính</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-dung-khi-phan-tich-mot-cau">Cách dùng khi phân tích một câu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diem-manh">Điểm mạnh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diem-yeu">Điểm yếu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-bai-bao-nen-doc-va-dung-de-trich-dan">Các bài báo nên đọc và dùng để trích dẫn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#luu-y-khi-trich-dan">Lưu ý khi trích dẫn</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Trinh
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

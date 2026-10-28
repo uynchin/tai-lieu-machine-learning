@@ -1,0 +1,753 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>MPQA Subjectivity Lexicon &#8212; Tài liệu Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chuong1/mpqa';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="So sánh sáu từ điển cảm xúc: EmoLex, SentiWordNet, SenticNet, AFINN, LIWC và MPQA" href="so-sanh-tu-dien.html" />
+    <link rel="prev" title="SenticNet" href="senticnet.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../welcome.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Tài liệu Machine Learning</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../welcome.html">
+                    Chào mừng
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="lexicon-based.html">Lexicon Based</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="bai1.html">SentiWordNet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nrc-emolex.html">NRC Emotion Lexicon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="senticnet.html">SenticNet</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">MPQA Subjectivity Lexicon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="so-sanh-tu-dien.html">So sánh sáu từ điển cảm xúc: EmoLex, SentiWordNet, SenticNet, AFINN, LIWC và MPQA</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/uynchin/tai-lieu-machine-learning" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/uynchin/tai-lieu-machine-learning/issues/new?title=Issue%20on%20page%20%2Fchuong1/mpqa.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chuong1/mpqa.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>MPQA Subjectivity Lexicon</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mpqa-subjectivity-lexicon-la-gi">1. MPQA Subjectivity Lexicon là gì?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nen-tang-chu-quan-va-khach-quan">Nền tảng: chủ quan và khách quan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mpqa-gan-them-gi-vao-tu">MPQA gắn thêm gì vào từ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-minh-hoa">Ví dụ minh họa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-cac-tac-gia-xay-dung-no">Cách các tác giả xây dựng nó</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mot-diem-hay-nham-danh-sach-khac-voi-kho-van-ban">Một điểm hay nhầm: danh sách khác với kho văn bản</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-dung-khi-phan-tich-mot-cau">Cách dùng khi phân tích một câu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diem-manh">Điểm mạnh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diem-yeu">Điểm yếu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-bai-bao-nen-doc-va-dung-de-trich-dan">Các bài báo nên đọc và dùng để trích dẫn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#luu-y-khi-trich-dan">Lưu ý khi trích dẫn</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="mpqa-subjectivity-lexicon">
+<h1>MPQA Subjectivity Lexicon<a class="headerlink" href="#mpqa-subjectivity-lexicon" title="Link to this heading">#</a></h1>
+<section id="mpqa-subjectivity-lexicon-la-gi">
+<h2>1. MPQA Subjectivity Lexicon là gì?<a class="headerlink" href="#mpqa-subjectivity-lexicon-la-gi" title="Link to this heading">#</a></h2>
+<p>MPQA Subjectivity Lexicon là một từ điển cho biết mỗi từ tiếng Anh có mang ý kiến chủ quan hay không, mạnh hay yếu, và nếu có thì nghiêng về tích cực hay tiêu cực. Người ta dùng nó để máy tính nhận ra những đoạn văn đang bày tỏ quan điểm, rồi mới xét quan điểm đó khen hay chê, mà không cần ai đọc và chấm tay.</p>
+<p>Điểm khác với năm từ điển trước nằm ở việc nó tách riêng hai câu hỏi. Câu hỏi thứ nhất là từ này có mang ý kiến hay chỉ nêu sự việc. Câu hỏi thứ hai là nếu có ý kiến thì khen hay chê. Các từ điển trước chủ yếu chỉ trả lời câu hỏi thứ hai. Tên MPQA lấy từ dự án Multi-Perspective Question Answering, một dự án về nhận diện ý kiến và quan điểm trong văn bản. Danh sách này do nhóm của Theresa Wilson, Janyce Wiebe và Paul Hoffmann xây dựng, gắn với Đại học Pittsburgh. Nó cũng thường được gọi là danh sách OpinionFinder, vì được dùng trong hệ thống OpinionFinder.</p>
+</section>
+<section id="nen-tang-chu-quan-va-khach-quan">
+<h2>Nền tảng: chủ quan và khách quan<a class="headerlink" href="#nen-tang-chu-quan-va-khach-quan" title="Link to this heading">#</a></h2>
+<p>Trong ngôn ngữ học tính toán, một câu chủ quan là câu thể hiện trạng thái bên trong của người viết như cảm xúc, đánh giá, niềm tin hay suy đoán. Một câu khách quan là câu nêu sự việc có thể kiểm chứng. Ví dụ “Khách sạn có 50 phòng” là khách quan, còn “Khách sạn này tuyệt vời” là chủ quan.</p>
+<p>Wiebe và cộng sự cho rằng nên nhận diện tính chủ quan trước, vì nếu một đoạn không mang ý kiến thì việc chấm điểm cực tính cho nó dễ gây nhiễu. Ý tưởng này cũng gần với điểm khách quan Obj trong <a class="reference internal" href="bai1.html"><span class="std std-doc">SentiWordNet</span></a>, nhưng MPQA áp dụng ở mức từ và gắn thêm độ mạnh.</p>
+</section>
+<section id="mpqa-gan-them-gi-vao-tu">
+<h2>MPQA gắn thêm gì vào từ<a class="headerlink" href="#mpqa-gan-them-gi-vao-tu" title="Link to this heading">#</a></h2>
+<p>Với mỗi mục từ w, danh sách gắn các thông tin sau:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Thành phần</p></th>
+<th class="head"><p>Ý nghĩa</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Độ mạnh chủ quan</p></td>
+<td><p>Mạnh hoặc yếu</p></td>
+</tr>
+<tr class="row-odd"><td><p>Từ loại</p></td>
+<td><p>Danh từ, động từ, tính từ, trạng từ hoặc bất kỳ</p></td>
+</tr>
+<tr class="row-even"><td><p>Có rút gốc hay không</p></td>
+<td><p>Cho biết mục từ có khớp với các dạng chia của từ hay không</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cực tính trước</p></td>
+<td><p>Tích cực, tiêu cực, trung tính, hoặc cả hai</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Độ mạnh chủ quan chia hai mức. Từ chủ quan mạnh là từ gần như luôn mang ý kiến dù ở ngữ cảnh nào. Từ chủ quan yếu là từ chỉ đôi khi mang ý kiến, tùy ngữ cảnh. Cực tính trước là cực tính mà từ thường mang khi đứng riêng, chưa xét ngữ cảnh, nên gọi là prior polarity.</p>
+<p>Có bốn điểm khác với các từ điển trước. Thứ nhất, danh sách có thông tin từ loại, nên phần nào phân biệt được cùng một từ khi làm danh từ và khi làm tính từ. Thứ hai, độ mạnh là hai mức chứ không phải thang liên tục, nên thô hơn <a class="reference internal" href="#afinn.md"><span class="xref myst">AFINN</span></a>. Thứ ba, cực tính có giá trị trung tính, nghĩa là từ có thể mang ý kiến nhưng không nghiêng khen hay chê. Thứ tư, danh sách có giá trị cả hai, dành cho từ có thể khen hoặc chê tùy ngữ cảnh.</p>
+</section>
+<section id="vi-du-minh-hoa">
+<h2>Ví dụ minh họa<a class="headerlink" href="#vi-du-minh-hoa" title="Link to this heading">#</a></h2>
+<p>Các mục từ dưới đây chỉ để minh họa, không phải dòng thật trong tệp. Cần tra trực tiếp trong tệp dữ liệu trước khi dùng.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Từ</p></th>
+<th class="head"><p>Độ mạnh chủ quan</p></th>
+<th class="head"><p>Từ loại</p></th>
+<th class="head"><p>Cực tính trước</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>excellent</p></td>
+<td><p>mạnh</p></td>
+<td><p>tính từ</p></td>
+<td><p>tích cực</p></td>
+</tr>
+<tr class="row-odd"><td><p>terrible</p></td>
+<td><p>mạnh</p></td>
+<td><p>tính từ</p></td>
+<td><p>tiêu cực</p></td>
+</tr>
+<tr class="row-even"><td><p>decent</p></td>
+<td><p>yếu</p></td>
+<td><p>tính từ</p></td>
+<td><p>tích cực</p></td>
+</tr>
+<tr class="row-odd"><td><p>room</p></td>
+<td><p>không có trong danh sách</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Ví dụ cho thấy “excellent” và “decent” cùng tích cực nhưng khác độ mạnh chủ quan. Từ chỉ sự vật thông thường như “room” không có trong danh sách, vì nó không mang ý kiến.</p>
+</section>
+<section id="cach-cac-tac-gia-xay-dung-no">
+<h2>Cách các tác giả xây dựng nó<a class="headerlink" href="#cach-cac-tac-gia-xay-dung-no" title="Link to this heading">#</a></h2>
+<p>Mô tả chung nhất như sau:</p>
+<ol class="arabic simple">
+<li><p>Thu thập các từ gợi ý chủ quan từ nhiều nguồn. Một phần đến từ danh sách do Riloff và Wiebe xây dựng bằng phương pháp tự học từ văn bản. Một phần lấy từ danh sách General Inquirer. Một phần do chính các tác giả bổ sung thủ công.</p></li>
+<li><p>Phân loại từng từ theo độ mạnh chủ quan, dựa trên việc từ đó xuất hiện trong văn bản đã được người đọc gán nhãn là chủ quan nhiều hay ít.</p></li>
+<li><p>Gán cực tính trước. Phần lớn do người gán, một phần suy ra bằng thuật toán từ các nguồn có sẵn.</p></li>
+<li><p>Công bố danh sách kèm công cụ OpinionFinder.</p></li>
+</ol>
+<p>Điểm cần nhớ là danh sách này kết hợp nhiều nguồn và nhiều cách gán, cả thủ công lẫn tự động, nên chất lượng không hoàn toàn đồng đều. Cần đối chiếu mô tả chi tiết với bài gốc trước khi viết vào phần phương pháp.</p>
+</section>
+<section id="mot-diem-hay-nham-danh-sach-khac-voi-kho-van-ban">
+<h2>Một điểm hay nhầm: danh sách khác với kho văn bản<a class="headerlink" href="#mot-diem-hay-nham-danh-sach-khac-voi-kho-van-ban" title="Link to this heading">#</a></h2>
+<p>Tên MPQA còn chỉ một kho văn bản tin tức đã được người đọc gán nhãn ý kiến và quan điểm, gọi là MPQA Opinion Corpus. Từ điển và kho văn bản là hai tài nguyên khác nhau, dù cùng nhóm tác giả và cùng dự án. Khi viết bài, cần ghi rõ đang dùng cái nào, và trích đúng bài tương ứng.</p>
+</section>
+<section id="cach-dung-khi-phan-tich-mot-cau">
+<h2>Cách dùng khi phân tích một câu<a class="headerlink" href="#cach-dung-khi-phan-tich-mot-cau" title="Link to this heading">#</a></h2>
+<p>Lấy câu “The room was clean but the staff were rude” làm ví dụ. Các giá trị dưới đây chỉ để minh họa.</p>
+<ol class="arabic simple">
+<li><p>Tách từ và gán từ loại, vì danh sách có thông tin từ loại.</p></li>
+<li><p>Đưa về dạng gốc nếu mục từ yêu cầu.</p></li>
+<li><p>Tra từng từ trong danh sách, như bảng dưới.</p></li>
+<li><p>Đếm số từ tích cực và số từ tiêu cực, có thể trọng số theo độ mạnh. Ví dụ tính từ mạnh là 2 và từ yếu là 1. Khi đó điểm tích cực là 1 và điểm tiêu cực là 2, tổng là âm 1, câu hơi nghiêng về tiêu cực.</p></li>
+</ol>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Từ</p></th>
+<th class="head"><p>Độ mạnh chủ quan</p></th>
+<th class="head"><p>Cực tính trước</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>clean</p></td>
+<td><p>yếu</p></td>
+<td><p>tích cực</p></td>
+</tr>
+<tr class="row-odd"><td><p>rude</p></td>
+<td><p>mạnh</p></td>
+<td><p>tiêu cực</p></td>
+</tr>
+<tr class="row-even"><td><p>room, staff, các từ còn lại</p></td>
+<td><p>không có trong danh sách</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Cách trọng số do người dùng tự chọn và cần nêu rõ trong phần phương pháp. Danh sách này thường được dùng theo cách đếm, chứ không cho điểm số thực, nên đầu ra thô hơn AFINN.</p>
+</section>
+<section id="diem-manh">
+<h2>Điểm mạnh<a class="headerlink" href="#diem-manh" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Tách được tính chủ quan khỏi cực tính, nên lọc được các đoạn không mang ý kiến trước khi phân tích cảm xúc (Wilson, Wiebe và Hoffmann, 2005).</p></li>
+<li><p>Có thông tin từ loại, nên phân biệt được một phần các cách dùng khác nhau của cùng một từ.</p></li>
+<li><p>Có khái niệm cực tính trước, nghĩa là các tác giả thừa nhận rõ cực tính của từ có thể thay đổi theo ngữ cảnh. Đây chính là động lực của bài Wilson và cộng sự (2005).</p></li>
+<li><p>Công khai và miễn phí cho nghiên cứu, nên dễ lặp lại kết quả.</p></li>
+<li><p>Được dùng rộng rãi làm đặc trưng và mốc so sánh. Hutto và Gilbert (2014) đưa nhóm từ điển này vào các phương pháp đối chứng, nhưng cần đối chiếu bài gốc để xác nhận có nhắc riêng danh sách MPQA hay không.</p></li>
+<li><p>Có trong nhiều gói phần mềm, gồm hàm get_sentiments của gói tidytext trong R ở một số cấu hình. Cần kiểm tra tài liệu của gói trước khi nêu.</p></li>
+</ul>
+</section>
+<section id="diem-yeu">
+<h2>Điểm yếu<a class="headerlink" href="#diem-yeu" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Danh sách chỉ có hai mức độ mạnh và không có thang liên tục, nên khó so sánh mức khen chê giữa các từ. Ý này là nhận xét về cách dùng.</p></li>
+<li><p>Cực tính trước không xét ngữ cảnh, nên phủ định và mỉa mai vẫn bị bỏ qua nếu dùng đơn giản bằng cách đếm. Wilson và cộng sự (2005) nêu rõ rằng cực tính ngữ cảnh có thể khác cực tính trước, và họ xây mô hình riêng để xử lý điều này.</p></li>
+<li><p>Nguồn gốc hỗn hợp nên chất lượng nhãn không đồng đều. Ý này là nhận xét về cách xây dựng, cần đối chiếu với bài gốc.</p></li>
+<li><p>Không có nhãn cảm xúc cụ thể như giận dữ hay buồn bã, chỉ có cực tính.</p></li>
+<li><p>Chủ yếu là tiếng Anh, và được xây dựng từ văn bản tin tức. Với tiếng Việt, cần dịch trước hoặc dùng bản dịch, và cả hai cách đều có thể làm lệch sắc thái. Ý này là nhận xét về cách dùng.</p></li>
+<li><p>Nguồn tin tức có thể không hợp với đánh giá khách sạn, nơi người viết dùng ngôn ngữ đời thường hơn. Ý này là nhận xét về cách dùng, cần cân nhắc khi nêu trong phần bàn luận.</p></li>
+</ul>
+</section>
+<section id="cac-bai-bao-nen-doc-va-dung-de-trich-dan">
+<h2>Các bài báo nên đọc và dùng để trích dẫn<a class="headerlink" href="#cac-bai-bao-nen-doc-va-dung-de-trich-dan" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bài</p></th>
+<th class="head"><p>Dùng để trích khi nào</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Wilson, Wiebe &amp; Hoffmann (2005), Recognizing Contextual Polarity in Phrase-Level Sentiment Analysis, HLT/EMNLP</p></td>
+<td><p>Mô tả danh sách, khái niệm cực tính trước và cực tính ngữ cảnh. Đây là nguồn chính</p></td>
+</tr>
+<tr class="row-odd"><td><p>Wilson, Wiebe &amp; Hoffmann (2009), Recognizing Contextual Polarity: An Exploration of Features for Phrase-Level Sentiment Analysis, Computational Linguistics</p></td>
+<td><p>Bản mở rộng đầy đủ hơn của bài trên</p></td>
+</tr>
+<tr class="row-even"><td><p>Wiebe, Wilson &amp; Cardie (2005), Annotating Expressions of Opinions and Emotions in Language, Language Resources and Evaluation</p></td>
+<td><p>Mô tả kho văn bản MPQA và cách gán nhãn</p></td>
+</tr>
+<tr class="row-odd"><td><p>Riloff &amp; Wiebe (2003), Learning Extraction Patterns for Subjective Expressions, EMNLP</p></td>
+<td><p>Nguồn gốc một phần các từ chủ quan trong danh sách</p></td>
+</tr>
+<tr class="row-even"><td><p>Wilson và cộng sự (2005), OpinionFinder: A System for Subjectivity Analysis, HLT/EMNLP Demonstrations</p></td>
+<td><p>Hệ thống phần mềm dùng danh sách này</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="luu-y-khi-trich-dan">
+<h2>Lưu ý khi trích dẫn<a class="headerlink" href="#luu-y-khi-trich-dan" title="Link to this heading">#</a></h2>
+<p>Thông tin xuất bản, nguồn gốc các từ và cách gán nhãn trong trang này chưa được tra lại trực tiếp. Tên các cột trong tệp dữ liệu và số lượng mục cũng cần đối chiếu với tệp tải về. Trước khi đưa vào danh mục tài liệu tham khảo, cần kiểm tra tên bài, năm, nơi đăng trên Google Scholar hoặc trang của nhóm tác giả.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chuong1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="senticnet.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">SenticNet</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="so-sanh-tu-dien.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">So sánh sáu từ điển cảm xúc: EmoLex, SentiWordNet, SenticNet, AFINN, LIWC và MPQA</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mpqa-subjectivity-lexicon-la-gi">1. MPQA Subjectivity Lexicon là gì?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nen-tang-chu-quan-va-khach-quan">Nền tảng: chủ quan và khách quan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mpqa-gan-them-gi-vao-tu">MPQA gắn thêm gì vào từ</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-minh-hoa">Ví dụ minh họa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-cac-tac-gia-xay-dung-no">Cách các tác giả xây dựng nó</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mot-diem-hay-nham-danh-sach-khac-voi-kho-van-ban">Một điểm hay nhầm: danh sách khác với kho văn bản</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-dung-khi-phan-tich-mot-cau">Cách dùng khi phân tích một câu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diem-manh">Điểm mạnh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diem-yeu">Điểm yếu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-bai-bao-nen-doc-va-dung-de-trich-dan">Các bài báo nên đọc và dùng để trích dẫn</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#luu-y-khi-trich-dan">Lưu ý khi trích dẫn</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Trinh
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
