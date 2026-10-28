@@ -1,0 +1,670 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Chuẩn hóa tiếng lóng &#8212; Tài liệu Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=55c26ed414f5f8a31ebb" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=55c26ed414f5f8a31ebb"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chuong1/slang-normalization';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Emoji và emoticon" href="emoji-emoticon.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../welcome.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Tài liệu Machine Learning</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../welcome.html">
+                    Chào mừng
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine learning</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="lexicon-based.html">Lexicon Based</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="dictionary-based.html">Dictionary Based</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="bai1.html">SentiWordNet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nrc-emolex.html">NRC Emotion Lexicon</a></li>
+<li class="toctree-l3"><a class="reference internal" href="senticnet.html">SenticNet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="afinn.html">AFINN</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="corpus-based.html">Corpus Based</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="corpus-statistical.html">Thống kê: PMI và đồng xuất hiện</a></li>
+<li class="toctree-l3"><a class="reference internal" href="corpus-semantic.html">Ngữ nghĩa: mở rộng từ điển bằng vectơ từ</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="rule-based.html">Xử lý quy tắc</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="negation.html">Negation handling: xử lý phủ định</a></li>
+<li class="toctree-l3"><a class="reference internal" href="intensifier.html">Intensifier handling: xử lý từ tăng cường</a></li>
+<li class="toctree-l3"><a class="reference internal" href="emoji-emoticon.html">Emoji và emoticon</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Chuẩn hóa tiếng lóng</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/uynchin/tai-lieu-machine-learning" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/uynchin/tai-lieu-machine-learning/issues/new?title=Issue%20on%20page%20%2Fchuong1/slang-normalization.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/chuong1/slang-normalization.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Chuẩn hóa tiếng lóng</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-gi">Là gì?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nen-tang">Nền tảng</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cong-thuc">Công thức</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-minh-hoa">Ví dụ minh họa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-dung-khi-phan-tich">Cách dùng khi phân tích</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diem-manh">Điểm mạnh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diem-yeu">Điểm yếu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-bai-bao-nen-doc-va-dung-de-trich-dan">Các bài báo nên đọc và dùng để trích dẫn</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="chuan-hoa-tieng-long">
+<h1>Chuẩn hóa tiếng lóng<a class="headerlink" href="#chuan-hoa-tieng-long" title="Link to this heading">#</a></h1>
+<section id="la-gi">
+<h2>Là gì?<a class="headerlink" href="#la-gi" title="Link to this heading">#</a></h2>
+<p>Chuẩn hóa tiếng lóng là đưa các dạng viết không chuẩn về dạng chuẩn trước khi tra từ điển cảm xúc. Mục đích là để từ viết tắt, viết sai hoặc kéo dài chữ vẫn khớp được với mục từ trong từ điển.</p>
+</section>
+<section id="nen-tang">
+<h2>Nền tảng<a class="headerlink" href="#nen-tang" title="Link to this heading">#</a></h2>
+<p>Han và Baldwin năm 2011 định nghĩa nhiệm vụ này là ánh xạ từ ngoài từ vựng, tức dạng viết sai chuẩn, sang dạng chuẩn. Họ liệt kê nguồn gốc của dạng sai chuẩn trên Twitter: lỗi gõ, viết tắt tùy tiện, thay âm, cấu trúc sai ngữ pháp và biểu tượng cảm xúc. Bài so sánh tỷ lệ từ ngoài từ vựng giữa tin tức, Twitter và tin nhắn SMS, và đề xuất phương pháp kết hợp tra từ điển với nhiều nguồn dữ liệu khác.</p>
+<p>Một bản báo cáo của Han, Lui và Baldwin cho thấy cách làm trong thực tế. Họ chọn tra từ điển với độ chính xác cao nhưng phủ thấp, tức thay một từ khi chắc chắn, như “u” thành “you”, và tránh chuẩn hóa quá tay những từ lạ nhưng đúng. Trong 5.478.459 bài đăng tiếng Anh, họ chuẩn hóa 1.279.169 từ, ảnh hưởng đến 868.993 bài đăng.</p>
+<p>Nhóm NRC của Mohammad và cộng sự cũng có bước chuẩn hóa riêng, ví dụ tách thẻ ghép nhiều từ như <code class="docutils literal notranslate"><span class="pre">#biggestdaythisyear</span></code> thành các từ rời.</p>
+</section>
+<section id="cong-thuc">
+<h2>Công thức<a class="headerlink" href="#cong-thuc" title="Link to this heading">#</a></h2>
+<p>Bước này không có công thức tính điểm. Nó là bảng ánh xạ, và hiệu quả đo bằng thay đổi điểm trước và sau.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Dạng gốc  →  Dạng chuẩn  →  Điểm lấy từ từ điển
+</pre></div>
+</div>
+</section>
+<section id="vi-du-minh-hoa">
+<h2>Ví dụ minh họa<a class="headerlink" href="#vi-du-minh-hoa" title="Link to this heading">#</a></h2>
+<p>Các dòng dưới chỉ để minh họa, giả sử “love” có điểm 3 trong từ điển.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Dạng gốc</p></th>
+<th class="head"><p>Dạng chuẩn</p></th>
+<th class="head"><p>Điểm trước chuẩn hóa</p></th>
+<th class="head"><p>Điểm sau chuẩn hóa</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>luv</p></td>
+<td><p>love</p></td>
+<td><p>0, vì không có trong từ điển</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>u</p></td>
+<td><p>you</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>soooo goood</p></td>
+<td><p>so good</p></td>
+<td><p>0</p></td>
+<td><p>điểm của good, cộng thêm điều chỉnh tăng cường của so</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Dòng thứ hai cho thấy chuẩn hóa không đổi điểm khi từ chuẩn không mang cảm xúc. Việc chuẩn hóa chỉ có giá trị với từ cảm xúc bị viết sai chuẩn.</p>
+</section>
+<section id="cach-dung-khi-phan-tich">
+<h2>Cách dùng khi phân tích<a class="headerlink" href="#cach-dung-khi-phan-tich" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Phát hiện các từ không có trong từ vựng chuẩn.</p></li>
+<li><p>Sinh các dạng chuẩn có thể có cho mỗi từ.</p></li>
+<li><p>Chọn dạng chuẩn dựa trên từ điển, độ giống về chữ viết và ngữ cảnh. Đây là quy trình tổng quát được tóm lại, không phải tả lại từng bước trong bài của Han và Baldwin.</p></li>
+<li><p>Thay thế, và ghi lại các từ đã thay để kiểm tra sau.</p></li>
+</ol>
+<p>Thứ tự bước quan trọng. Nếu hạ chữ thường trước khi tính tăng cường theo VADER thì mất tín hiệu chữ in hoa. Nếu xử lý phủ định trước khi chuẩn hóa thì phủ định viết tắt không được nhận ra.</p>
+</section>
+<section id="diem-manh">
+<h2>Điểm mạnh<a class="headerlink" href="#diem-manh" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Tăng số từ khớp được với từ điển, vì từ ngoài từ vựng phổ biến trên Twitter và SMS hơn trên tin tức, theo so sánh của Han và Baldwin.</p></li>
+<li><p>Cho phép dùng nguyên từ điển đã có mà không cần mở rộng.</p></li>
+<li><p>Bảng ánh xạ kiểm tra và sửa tay được.</p></li>
+</ul>
+</section>
+<section id="diem-yeu">
+<h2>Điểm yếu<a class="headerlink" href="#diem-yeu" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Chuẩn hóa quá tay có thể làm hỏng từ đúng. Báo cáo của Han, Lui và Baldwin chọn độ chính xác cao vì lý do này. <a class="reference internal" href="afinn.html"><span class="std std-doc">AFINN</span></a> còn chứa nhiều từ đời thường và từ thô tục, nên thay chúng bằng từ chuẩn có thể làm mất điểm vốn có.</p></li>
+<li><p>Một dạng viết tắt có thể ứng với nhiều dạng chuẩn, cần ngữ cảnh để chọn.</p></li>
+<li><p>Với tiếng Việt, chưa kiểm chứng được tài nguyên chuẩn hóa công khai nào. Các dạng viết tắt quen thuộc như “ko”, “k”, “hok” cho “không”, “dc” và “đc” cho “được”, “j” cho “gì”, “ntn” cho “như thế nào” là hiểu biết chung, chưa có nguồn. Dạng “ko” còn là từ phủ định, nên chuẩn hóa là điều kiện để xử lý phủ định tiếng Việt chạy đúng. Dữ liệu viết không dấu cũng cần bước khôi phục dấu. Nên lập bảng ánh xạ từ chính dữ liệu đang nghiên cứu.</p></li>
+</ul>
+</section>
+<section id="cac-bai-bao-nen-doc-va-dung-de-trich-dan">
+<h2>Các bài báo nên đọc và dùng để trích dẫn<a class="headerlink" href="#cac-bai-bao-nen-doc-va-dung-de-trich-dan" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Bài</p></th>
+<th class="head"><p>Dùng để trích khi nào</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Han &amp; Baldwin (2011), Lexical Normalisation of Short Text Messages: Makn Sens a #twitter, ACL, trang 368 đến 378</p></td>
+<td><p>Định nghĩa nhiệm vụ, nguồn gốc dạng sai chuẩn, phương pháp. Nguồn chính</p></td>
+</tr>
+<tr class="row-odd"><td><p>Han, Lui &amp; Baldwin, Melbourne Language Technology Group Microblog Track Report, TREC</p></td>
+<td><p>Ví dụ chuẩn hóa độ chính xác cao và số liệu quy mô. Chưa tra năm đăng chính xác</p></td>
+</tr>
+<tr class="row-even"><td><p>Mohammad, Kiritchenko &amp; Zhu (2013), NRC-Canada, SemEval 2013</p></td>
+<td><p>Tách thẻ ghép từ và các đặc trưng chữ in hoa</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./chuong1"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="emoji-emoticon.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Emoji và emoticon</p>
+      </div>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#la-gi">Là gì?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nen-tang">Nền tảng</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cong-thuc">Công thức</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vi-du-minh-hoa">Ví dụ minh họa</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cach-dung-khi-phan-tich">Cách dùng khi phân tích</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diem-manh">Điểm mạnh</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#diem-yeu">Điểm yếu</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cac-bai-bao-nen-doc-va-dung-de-trich-dan">Các bài báo nên đọc và dùng để trích dẫn</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Trinh
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=55c26ed414f5f8a31ebb"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=55c26ed414f5f8a31ebb"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
