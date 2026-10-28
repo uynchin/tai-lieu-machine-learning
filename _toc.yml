@@ -5,9 +5,19 @@ parts:
     chapters:
       - file: chuong1/lexicon-based
         sections:
-          - file: chuong1/bai1
-          - file: chuong1/nrc-emolex
-          - file: chuong1/senticnet
-          - file: chuong1/afinn
-          - file: chuong1/mpqa
-          - file: chuong1/so-sanh-tu-dien
+          - file: chuong1/dictionary-based
+            sections:
+              - file: chuong1/bai1
+              - file: chuong1/nrc-emolex
+              - file: chuong1/senticnet
+              - file: chuong1/afinn
+          - file: chuong1/corpus-based
+            sections:
+              - file: chuong1/corpus-statistical
+              - file: chuong1/corpus-semantic
+          - file: chuong1/rule-based
+            sections:
+              - file: chuong1/negation
+              - file: chuong1/intensifier
+              - file: chuong1/emoji-emoticon
+              - file: chuong1/slang-normalization
