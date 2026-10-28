@@ -8,3 +8,6 @@ parts:
           - file: chuong1/bai1
           - file: chuong1/nrc-emolex
           - file: chuong1/senticnet
+          - file: chuong1/afinn
+          - file: chuong1/mpqa
+          - file: chuong1/so-sanh-tu-dien
